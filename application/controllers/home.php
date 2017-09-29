@@ -9,18 +9,9 @@
 class Home extends CI_Controller {
 
     public function index() {
-        
-        $this->load->helper('url');
-        
-        $this->load->view('inc/header_view');
+
         $this->load->view('home/home_view');
-        $this->load->view('inc/navbar_view');
-        $this->load->view('inc/loginmodal_view');
         $this->load->view('inc/footer_view');
-    }
-    
-    public function test(){
-        
     }
 
     public function aFunc(){
