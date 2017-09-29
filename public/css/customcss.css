@@ -1,0 +1,215 @@
+/* ==================================================
+  Nav bar Styling
+  ================================================== */
+
+nav {
+    background-color: #89bdd3 !important;
+    background: linear-gradient(#9ad3de, #89bdd3);
+    z-index: 99 !important;
+}
+.dropdown-content {
+    min-width: 150px;
+    position: static !important;
+}
+.setFix {
+    position: fixed !important;
+    top: 0px;
+    width: 100%;
+}
+nav ul a {
+    color: #fff;
+    font-family: 'Russo One', sans-serif;
+    font-size:  18px;
+}
+
+/* ==================================================
+  Dropdown Styling
+  ================================================== */
+
+.dropdown-content li>a, .dropdown-content li>span {
+    color: #89bdd3;
+    font-size:  18px;
+    font-family: 'Acme', sans-serif;
+}
+
+/* ==================================================
+  Side Nav Styling
+  ================================================== */
+
+.side-nav {
+    background-color: #fff;
+    background: linear-gradient(#fff, #9ad3de);
+}
+
+.side-nav li>a {
+    color: #89bdd3;
+    font-family: 'Russo One', sans-serif;
+    font-size:  18px;
+}
+.dropdown-content li>a{
+    background-color: #fff !important;
+    font-size:  18px;
+    font-family: 'Acme', sans-serif;
+}
+
+/* ==================================================
+  Hero Styling
+================================================== */
+.hero {
+    display: table;
+    position: relative;
+    background-image: url(../img/home/hero.jpg);
+    background-size: cover;
+    padding: 150px 0;
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+}
+
+.hero:after {
+    content: '';
+    z-index: 0;
+    background: rgba(0, 0, 0, 0.65);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+}
+.adjust-header{
+    margin-top: 64px !important;
+}
+
+/* ==================================================
+  Tabs Styling
+================================================== */
+
+.theme-color-blend {
+    background: linear-gradient(#fff, #9ad3de);
+}
+
+.tabs .tab a:hover, .tabs .tab a.active{
+    color: #89bdd3;
+    font-family: 'Russo One', sans-serif;
+    font-size:  18px;
+}
+
+.tabs .tab a:hover, .tabs .tab a{
+    color: #89bdd3;
+    font-family: 'Acme', sans-serif;
+    font-size:  18px;
+}
+
+.tabs .indicator{
+    position: absolute;
+    bottom: 0;
+    height: 7px;
+    background-color: #9ad3de;
+    will-change: left, right;
+}
+
+.theme-color{
+    background-color: #9ad3de;
+}
+
+
+/* ==================================================
+  Forms Styling
+================================================== */
+
+input{
+    color: #000;
+    font-family: 'Acme', sans-serif;
+    font-size:  18px;
+}
+
+.select-wrapper input.select-dropdown{
+    /*min-width: 150px;*/
+    position: static !important;
+}
+.circle-btn {
+    border-radius: 50px;
+    background-color: #9ad3de;
+    font-family: 'Russo One', sans-serif;
+}
+
+.circle-btn {
+    border-radius: 50px;
+    background-color: #fff;
+    font-family: 'Russo One', sans-serif;
+    color: #9ad3de;
+}
+.circle-btn:hover {
+    background-color: #9ad3de;
+    color: #fff;
+}
+
+.circle-btn:focus {
+    color: #fff;
+}
+/* ==================================================
+  scrolltop Styling
+================================================== */
+
+.scrolltop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #89bdd3;
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+}
+
+.scrolltop:hover, .scrolltop:active, .scrolltop:focus {
+    color: #fff !important;
+    opacity: .75;
+}
+
+/* ==================================================
+  Results Styling
+================================================== */
+
+.title {
+    color: #89bdd3 !important;
+    font-family: 'Russo One', sans-serif;
+    font-size:  24px;
+}
+.location {
+    color: #9ad3de !important;
+    font-family: 'Acme', sans-serif;
+    font-size:  18px;
+}
+.price {
+    color: #c3c3c3 !important;
+    font-family: 'Acme', sans-serif;
+    font-size:  32px;
+}
+.link {
+    color: #c3c3c3 !important;
+    font-family: 'Russo One', sans-serif;
+    font-size:  18px;
+}
+.details{
+    color: #c3c3c3 !important;
+    font-size:  14px;
+}
+
+.filter{
+    background-color: #fff;
+}
+.stay-panel{
+    position: static !important;
+}
