@@ -19,11 +19,9 @@
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
         console.log('Logged in and authenticated');
-        setElements(true);
         testAPI();
     } else {
         console.log('Not authenticated');
-        setElements(false);
     }
 }
 
@@ -34,10 +32,11 @@ function checkLoginState() {
 }
 
 function testAPI() {
-    FB.api('/me?fields=name,email,birthday', function (response) {
+    FB.api('/me?fields= id, first_name, last_name, gender', function (response) {
         if (response && !response.error) {
             console.log(response);
-            buildProfile(response);
+            //buildProfile(response);
+            
         }
 
         FB.api('/me/feed', function (response) {
@@ -49,31 +48,15 @@ function testAPI() {
 
 function buildProfile(user) {
     let profile = `
-<h3>${user.name}</h3>
+<h3>Welcome back, ${user.name}</h3>
 <ul class="list-group">
     <li class="list-group-item">User ID: ${user.id}</li>
-    <li class="list-group-item">Email: ${user.email}</li>
-    <li class="list-group-item">Birthday: ${user.birthday}</li>
-    <li class="list-group-item">User Name: ${user.name}</li>
+    <li class="list-group-item">First name: ${user.first_name}</li>
+    <li class="list-group-item">Last name: ${user.last_name}</li>
+    <li class="list-group-item">Gender: ${user.gender}</li>
 </ul>
     `;
     document.getElementById('profile').innerHTML = profile;
-}
-
-function setElements(isLoggedIn) {
-    if (isLoggedIn) {
-        document.getElementById('logout').style.display = 'block';
-        document.getElementById('profile').style.display = 'block';
-        document.getElementById('feed').style.display = 'block';
-        document.getElementById('fb-btn').style.display = 'none';
-        document.getElementById('heading').style.display = 'none';
-    } else {
-        document.getElementById('logout').style.display = 'none';
-        document.getElementById('profile').style.display = 'none';
-        document.getElementById('feed').style.display = 'none';
-        document.getElementById('fb-btn').style.display = 'block';
-        document.getElementById('heading').style.display = 'block';
-    }
 }
 
 function logout() {

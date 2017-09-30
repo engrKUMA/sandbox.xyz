@@ -15,17 +15,20 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a id="logout" href="#" onclick="logout()">Logout</a></li>
-                <div id="fb-btn" 
-                     class="fb-login-button" 
-                     scope="public_profile,email,user_birthday"
-                     onlogin="checkLoginState();" 
-                     data-max-rows="1" 
-                     data-size="large" 
-                     data-button-type="continue_with" 
-                     data-show-faces="false" 
-                     data-auto-logout-link="true" 
-                     data-use-continue-as="true">
+                
+                <div 
+                    id="fb-btn" 
+                    scope="public_profile,email,user_birthday"
+                    onlogin="checkLoginState();" 
+                    class="fb-login-button" 
+                    data-max-rows="1" 
+                    data-size="large" 
+                    data-button-type="continue_with" 
+                    data-show-faces="false" 
+                    data-auto-logout-link="false" 
+                    data-use-continue-as="true">
                 </div>
+
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -34,5 +37,4 @@
 <div class="container">
     <h3 id="heading">Log in to view your profile</h3>
     <div id="profile"></div>
-    <div id="feed"></div>
 </div>
