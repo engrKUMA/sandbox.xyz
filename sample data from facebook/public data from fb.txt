@@ -1,0 +1,40 @@
+{id: "1670140136350914", cover: {…}, name: "Aru Veluz", first_name: "Aru", last_name: "Veluz", …}
+age_range
+:
+{min: 21}
+cover
+:
+{id: "1000520186646249", offset_x: 0, offset_y: 0, source: "https://scontent.xx.fbcdn.net/v/t31.0-8/s720x720/1…g?oh=4ca08c48df58a495de5f7cd38f4517df&oe=5A537E14"}
+first_name
+:
+"Aru"
+gender
+:
+"male"
+id
+:
+"1670140136350914"
+last_name
+:
+"Veluz"
+link
+:
+"https://www.facebook.com/app_scoped_user_id/1670140136350914/"
+locale
+:
+"en_US"
+name
+:
+"Aru Veluz"
+picture
+:
+{data: {…}}
+timezone
+:
+8
+updated_time
+:
+"2017-04-17T11:02:06+0000"
+verified
+:
+true

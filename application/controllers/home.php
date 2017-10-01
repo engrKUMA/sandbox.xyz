@@ -1,21 +1,13 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 class Home extends CI_Controller {
 
     public function index() {
 
-        $this->load->view('fbtest/include/header_view');
-        $this->load->view('fbtest/fbtest_view');
-        $this->load->view('fbtest/include/footer_view');
+        $this->load->view('fbtest/include/header_view')->view('fbtest/fbtest_view')->view('fbtest/include/footer_view');
     }
 
-    public function aFunc(){
+    public function toDash(){
 
         $this->load->view('user_dash/dash_view');
         $this->load->view('inc/footer_view');
