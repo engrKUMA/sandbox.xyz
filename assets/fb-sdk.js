@@ -17,6 +17,7 @@ window.fbAsyncInit = function () {
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+
 function statusChangeCallback(response) {
     if (response.status === 'connected') {
         console.log('Logged in and authenticated');
@@ -43,23 +44,23 @@ function testAPI() {
     });
 }
 
-
-var $usrInfo;
 function buildInfo() {
-    FB.api('/me', 'GET', {fields: 'first_name,last_name,id'}, function (response) {
-        var fName = response.first_name;
-        var lName = response.last_name;
-        var usrId = response.id;
+    FB.api('/me', 'GET', {fields: 'id, first_name, last_name'}, function (response) {
 
-// ajax test code for forwarding variable to controller
-//Send AJAX get request(you can send post requests too)
+        var userInfo = [response.id, response.first_name, response.last_name];
 
-        $.get('localhost/index.php/MyController/input/' + $rowCount);
+//        var userInfo = [response.id, response.first_name, response.last_name];
+//        alert(userInfo);
+//        window.location.href = "home/toDash/" + userInfo;
+    });
 
-//        alert(fName + lName + usrId);
-//        document.getElementById('txtUsrID').innerHTML = 'User ID : ' + usrId;
-//        document.getElementById('txtFName').innerHTML = 'First Name : ' + fName;
-//        document.getElementById('txtLName').innerHTML = 'Last Name : ' + lName;
+    $.ajax({
+        url: "<?= base_url() ?>home/toDash",
+        method: 'POST',
+        data:
+                {
+                    families_selection: families_selection
+                }
     });
 }
 

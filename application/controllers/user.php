@@ -7,12 +7,30 @@ class User extends CI_Controller{
         $this->load->model('user_model');
     }
     
+    public function login(){
+       
+        $this->session->set_userdata([
+            'id' => 1
+        ]);
+        
+        $session = $this->sesion->userdata('id');
+        print_r($session);
+       
+   }
+    
     public function test_get(){
-        $data = $this->user_model->get(123);
+        $data = $this->user_model->get();
         print_r($data);
     }
     
-    public function insert($data){
-        $result  = $this->user_model->insert();
+    public function test_insert(){
+        $result  = $this->user_model->insert([
+            'fbid' => "120398", 'fName' => "1stname", 'lName' => "lastname"
+        ]);
+        
+        print_r($result);
     }
+    
+    
+   
 }
