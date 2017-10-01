@@ -4,7 +4,9 @@ class Home extends CI_Controller {
 
     public function index() {
 
-        $this->load->view('fbtest/include/header_view')->view('fbtest/fbtest_view')->view('fbtest/include/footer_view');
+        $this->load ->view('home/include/header_view')
+                    ->view('home/home_view')
+                    ->view('home/include/footer_view');
     }
 
     public function toDash(){

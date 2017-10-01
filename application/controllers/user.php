@@ -12,9 +12,7 @@ class User extends CI_Controller{
         print_r($data);
     }
     
-    public function insert(){
-        $result  = $this->user_model->insert([
-            
-        ]);
+    public function insert($data){
+        $result  = $this->user_model->insert();
     }
 }
