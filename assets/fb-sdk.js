@@ -1,12 +1,84 @@
+//--------------------------------
+// Initiate Facebook JS SDK
 window.fbAsyncInit = function () {
     FB.init({
-        appId: '1799822213611659',
-        cookie: true,
-        xfbml: true,
-        version: 'v2.10'
+    appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
+    cookie: true, // enable cookies to allow the server to access the session
+            xfbml: false, // disable xfbml improves the page load time
+            version: 'v2.10', // use version 2.4
+            status: true // Check for user login status right away
+    }
+    );
+    FB.getLoginStatus(function (response) {
+        console.log('getLoginStatus', response);
+        loginCheck(response);
     });
-    FB.AppEvents.logPageView();
 };
+// Check login status
+function statusCheck(response)
+{
+    console.log('statusCheck', response.status);
+    if (response.status === 'connected')
+    {
+        $('.login').hide();
+        $('.form').fadeIn();
+    } else if (response.status === 'not_authorized')
+    {
+        // User logged into facebook, but not to our app.
+    } else
+    {
+        // User not logged into Facebook.
+    }
+}
+
+// Get login status
+function loginCheck()
+{
+    FB.getLoginStatus(function (response) {
+        console.log('loginCheck', response);
+        statusCheck(response);
+    });
+}
+
+// Here we run a very simple test of the Graph API after login is
+// successful.  See statusChangeCallback() for when this call is made.
+function getUser()
+{
+    FB.api('/me', function (response) {
+        console.log('getUser', response);
+    });
+}
+
+$(function () {
+    // Trigger login
+    $('.login').on('click', 'button', function () {
+        FB.login(function () {
+        loginCheck();
+        }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'}
+        );
+    });
+    $('.form').on('submit', '.post-to-wall', function (e) {
+        e.preventDefault();
+        var formdata = $(this).serialize();
+        $.ajax({
+            url: '/example/post',
+            data: formdata,
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                if (response.id)
+                {
+                    $('.form').html('<p>Post submitted successfully.</p>');
+                } else
+                {
+                    $('.form').html('<p>Something happened, please try again!.</p>');
+                }
+            }
+
+        })
+    });
+});
 (function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {
@@ -18,54 +90,21 @@ window.fbAsyncInit = function () {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-function statusChangeCallback(response) {
-    if (response.status === 'connected') {
-        console.log('Logged in and authenticated');
-        testAPI();
-    } else {
-        console.log('Not authenticated');
-    }
-}
 
-function checkLoginState() {
-    FB.getLoginStatus(function (response) {
-        statusChangeCallback(response);
-    });
-}
-
-function testAPI() {
-//    FB.api('/me?fields= id, cover, name, first_name, last_name, age_range, link, gender, locale, picture, timezone, updated_time, verified', function (response) {
-    FB.api('/me?fields= id, first_name, last_name', function (response) {
-        if (response && !response.error) {
-            console.log(response);
-//            buildProfile(response);
-            buildInfo(response);
-        }
-    });
-}
-
-function buildInfo() {
-    FB.api('/me', 'GET', {fields: 'id, first_name, last_name'}, function (response) {
-
-        var userInfo = [response.id, response.first_name, response.last_name];
-
-//        var userInfo = [response.id, response.first_name, response.last_name];
-//        alert(userInfo);
-//        window.location.href = "home/toDash/" + userInfo;
-    });
-
-    $.ajax({
-        url: "<?= base_url() ?>home/toDash",
-        method: 'POST',
-        data:
-                {
-                    families_selection: families_selection
-                }
-    });
-}
-
-function logout() {
-    FB.logout(function (response) {
-
-    });
-}
+//
+//function buildInfo() {
+//    FB.api('/me', 'GET', {fields: 'id, first_name, last_name'}, function (response) {
+//
+//        window.userInfo = [response.id, response.first_name, response.last_name];
+//
+////        var userInfo = [response.id, response.first_name, response.last_name];
+////        alert(userInfo);
+////        window.location.href = "home/toDash/" + userInfo;
+//
+////        document.getElementById("status").innerHTML = userInfo;
+//
+////        var myOrderString = "something";
+//        document.getElementById('userContainer').value = userInfo;
+//        document.getElementById('myForm');
+//    });
+//}
