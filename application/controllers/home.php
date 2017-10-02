@@ -20,7 +20,6 @@ class Home extends CI_Controller {
     public function toDash() {
 
         $this->load->view('user_dash/dash_view');
-        $this->load->view('home/include/footer_view');
     }
 
     /**
@@ -30,11 +29,13 @@ class Home extends CI_Controller {
         // Load view
         $this->load->view('examples/js');
     }
+    
+    public function test(){
+        $this->load->view('examples/start');
+    }
 
     public function logout() {
         $this->facebook->destroy_session();
-        redirect('/', redirect);
+        redirect('/home/test', redirect);
     }
-
-    // ------------------------------------------------------------------------
 }

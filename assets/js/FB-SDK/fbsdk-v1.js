@@ -1,23 +1,16 @@
-
-<div>
-
-    <h1>Facebook PHP SDK for CodeIgniter</h1>
-    <h3>Javascript SDK login example</h3>
-
-    <div class="login">
-        <button>Login</button>
-    </div>
-
-</div>
-
-<script>
-    // Initiate Facebook JS SDK
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+<?php>
+// Initiate Facebook JS SDK
     window.fbAsyncInit = function () {
         FB.init({
             appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
             cookie: true, // enable cookies to allow the server to access the session
             xfbml: false, // disable xfbml improves the page load time
-            version: 'v2.10',
+            version: 'v2.10', // use version 2.4
             status: true // Check for user login status right away
         });
 
@@ -33,7 +26,6 @@
         console.log('statusCheck', response.status);
         if (response.status === 'connected')
         {
-            //build user info then login..
             buildInfo();
 
         } else if (response.status === 'not_authorized')
@@ -71,21 +63,6 @@
             var fname = response.first_name;
             var lname = response.last_name;
 
-            postData = {'fbid': fbid, 'fname': fname, 'lname': lname};
-
-            var url = "/user/login";
-//        var postData = {'fbid': fbid, 'fname': fname, 'lname': lname};
-
-            $.post(url, postData, function (o) {
-                if (o.result == 1) {
-                    window.location.href = "home/toDash";
-                    alert('welcome back user');
-                } else {
-                    window.location.href = "home/toDash";
-                    alert('welcome new user');
-                }
-            }, 'json');
-
             /*
              var postData = {"fbid": fbid, "fname": fname, "lname": lname};
              
@@ -109,33 +86,31 @@
              }
              });
              */
-        });
-    }
 
-    function test() {
-        console.log($postData);
+            var url = "/user/login";
+            var postData = {'fbid': fbid, 'fname': fname, 'lname': lname};
+
+            $.post(url, postData, function (o) {
+                if (o.result == 1) {
+                    window.location.href = "home/toDash";
+                    alert('welcome back user');
+                } else {
+                    window.location.href = "home/toDash";
+                    alert('welcome new user');
+                }
+            }, 'json');
+
+        });
     }
 
     $(function () {
         // Trigger login
         $('.login').on('click', 'button', function () {
             FB.login(function () {
-//                loginCheck();
+                loginCheck();
             }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
         });
     });
-
-//    $(function () {
-//        $('.login').click(function () {
-//            FB.login(function () {
-////                loginCheck();
-////                buildInfo();
-//test();
-//            }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
-//        });
-//    });
-
-
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {
@@ -146,4 +121,5 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-</script>
+
+<?php>
