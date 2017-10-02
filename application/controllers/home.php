@@ -8,13 +8,17 @@ class Home extends CI_Controller {
         // Load library and url helper
         $this->load->library('facebook');
         $this->load->helper('url');
+        $this->load->library('session');
     }
 
+//    public function index() {
+//
+//        $this->load->view('home/include/header_view');
+//        $this->load->view('home/home_view');
+//        $this->load->view('home/include/footer_view');
+//    }
     public function index() {
-
-        $this->load->view('home/include/header_view');
-        $this->load->view('home/home_view');
-        $this->load->view('home/include/footer_view');
+        $this->load->view('new_home/new_home_view');
     }
 
     public function toDash() {

@@ -56,13 +56,14 @@
 
     // Here we run a very simple test of the Graph API after login is
     // successful.  See statusChangeCallback() for when this call is made.
-    function getUser()
-    {
-        FB.api('/me', function (response) {
-            console.log('getUser', response);
-        });
-    }
-
+    /*
+     function getUser()
+     {
+     FB.api('/me', function (response) {
+     console.log('getUser', response);
+     });
+     }
+     */
     function buildInfo() {
         FB.api('/me', 'GET', {fields: 'id, first_name, last_name'}, function (response) {
 
@@ -71,17 +72,17 @@
             var fname = response.first_name;
             var lname = response.last_name;
 
-            postData = {'fbid': fbid, 'fname': fname, 'lname': lname};
+            var postData = {'fbid': fbid, 'fname': fname, 'lname': lname};
 
             var url = "/user/login";
 //        var postData = {'fbid': fbid, 'fname': fname, 'lname': lname};
 
             $.post(url, postData, function (o) {
                 if (o.result == 1) {
-                    window.location.href = "home/toDash";
+//                window.location.href = "home/toDash";
                     alert('welcome back user');
                 } else {
-                    window.location.href = "home/toDash";
+//                window.location.href = "home/toDash";
                     alert('welcome new user');
                 }
             }, 'json');
@@ -112,10 +113,6 @@
         });
     }
 
-    function test() {
-        console.log($postData);
-    }
-
     $(function () {
         // Trigger login
         $('.login').on('click', 'button', function () {
@@ -130,7 +127,6 @@
 //            FB.login(function () {
 ////                loginCheck();
 ////                buildInfo();
-//test();
 //            }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
 //        });
 //    });
