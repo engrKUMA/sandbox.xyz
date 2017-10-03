@@ -49,11 +49,22 @@ class User extends CI_Controller {
     }
 
     public function test_insert() {
+        // $result = $this->user_model->insert([
+        //     'fbid' => "120398", 'fName' => "1stname", 'lName' => "lastname"
+        // ]);
+
+        $fbid = $this->input->post('fbid');
+        $fname = $this->input->post('fname');
+        $lname = $this->input->post('lname');
+
         $result = $this->user_model->insert([
-            'fbid' => "120398", 'fName' => "1stname", 'lName' => "lastname"
+            'fbid' => $fbid,
+            'fname' => $fname,
+            'lname' => $lname
         ]);
 
         print_r($result);
+
     }
 
 }
