@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,14 @@
 	<h1><?= $heading; ?></h1>
     <h3><?= $message; ?></h3>
 
-	<input type="button" name="" onclick="window.location.href = 'fbtest_home/loginpanel'; " value="redirect to loginpanel" />
+	<input type="button" name="" onclick="toLoginPanel();" value="redirect to loginpanel" />
 
+
+
+	<script type="text/javascript">
+		function toLoginPanel(){
+			window.location.href = "<?= base_url('fbtest_home/loginpanel'); ?>";
+		}
+	</script>
 </body>
 </html>

@@ -18,7 +18,7 @@ class Fbtest_user extends CI_Controller {
         $result = $this->user_model->get([
             'fbid' => $fbid,
             'fname' => $fname,
-            'lname' => $lname
+            'lname' => $lname,
             'email' => $email
         ]);
 
@@ -47,7 +47,7 @@ class Fbtest_user extends CI_Controller {
         $result = $this->user_model->insert([
             'fbid' => $fbid,
             'fname' => $fname,
-            'lname' => $lname
+            'lname' => $lname,
             'email' => $email
         ]);
 

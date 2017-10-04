@@ -37,18 +37,28 @@ class Fbtest_home extends CI_Controller {
 
     public function userdash(){
 
+    	$logoutUrl = $this->facebook->logout_url();
+
+
     	$data = array(
         'title' => 'the userdash Page',
         'heading' => 'Welcome to the USERDASH Page',
-        'message' => 'This is a test MSG for USERDASH'
+        'message' => 'This is a test MSG for USERDASH',
+        'logouturl' => $logoutUrl
         );
 
     	$this->load->view('fbtest_view/fbtest_user_dash', $data);
 
     }
 
+    public function logout() {
+
+    	//logout from app
+        $this->facebook->destroy_session();
+        redirect('fbtest_home/', redirect);
+    }
 
 
-
-
+    public function test(){
+    }
 }

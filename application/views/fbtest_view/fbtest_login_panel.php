@@ -13,7 +13,7 @@
 	<!-- <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true">	
 	</div> -->
 
-	<input type="button" name="login" onclick="" value="Login" />
+	<input type="button" name="login" onclick="test();" value="Login" />
 
     <div id="fbid">for fbid</div>
     <div id="fname">for fname</div>
@@ -50,9 +50,12 @@
         } else if (response.status === 'not_authorized')
         {
             // User logged into facebook, but not to our app.
-        } else
-        {
+        } else {
             // User not logged into Facebook.
+
+   //      	FB.login(function(response){
+   //      		buildInfo();
+			// });
         }
     }
 
@@ -73,30 +76,35 @@
             var lname = response.last_name;
             var email = response.email;
 
+            document.getElementById("fbid").innerHTML = fbid;
+            document.getElementById("fname").innerHTML = fname;
+            document.getElementById("lname").innerHTML = lname;
+            document.getElementById("email").innerHTML = email;
+
+
             var postData = {'fbid': fbid, 'fname': fname, 'lname': lname, 'email': email};
 
             var url = "/fbtest_user/login";
 
             $.post(url, postData, function (o) {
                 if (o.result == 1) {
-//                window.location.href = "home/toDash";
+               window.location.href = "userdash";
                     alert('welcome back user');
                 } else {
-//                window.location.href = "home/toDash";
                     alert('welcome new user');
                 }
             }, 'json');
         });
     }
 
-    $(function () {
+
+    function test() {
         // Trigger login
-        $('.login').on('click', 'button', function () {
             FB.login(function () {
-//                loginCheck();
+               loginCheck();
             }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
-        });
-    });
+    }
+    
 
 
     (function (d, s, id) {
