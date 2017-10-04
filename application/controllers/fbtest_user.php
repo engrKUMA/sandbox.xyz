@@ -14,7 +14,6 @@ class Fbtest_user extends CI_Controller {
         $lname = $this->input->post('lname');
         $email = $this->input->post('email');
 
-
         $result = $this->user_model->get([
             'fbid' => $fbid,
             'fname' => $fname,
@@ -27,6 +26,9 @@ class Fbtest_user extends CI_Controller {
         if ($result) {
             $this->session->set_userdata(['id' => $result[0]['id']]);
             $this->output->set_output(json_encode(['result' => 1]));
+            
+            $this->test_insert();
+            
             return FALSE;
         }
         $this->output->set_output(json_encode(['result' => 0]));
@@ -51,8 +53,7 @@ class Fbtest_user extends CI_Controller {
             'email' => $email
         ]);
 
-        print_r($result);
-
+//        print_r($result);
     }
 
 }

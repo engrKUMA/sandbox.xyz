@@ -1,32 +1,16 @@
-
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
-        <title><?= $title; ?></title>
+        <meta charset="UTF-8">
+        <title>wait wut?</title>
     </head>
     <body>
 
-        <h1><?= $heading; ?></h1>
-        <h3><?= $message; ?></h3>
-        <h3>User Token: <?= $usertoken; ?></h3>
-
-        <div id="fbid">for fbid</div>
-        <div id="fname">for fname</div>
-        <div id="lname">for lname</div>
-        <div id="email">for email</div>
-
-
-        <input type="button" name="" onclick="logMeout();" value="logout" />
-
-        <script type="text/javascript">
-
-            function logMeout() {
-                // window.location.href = "<?= base_url('fbtest_home/logout'); ?>";	
-                window.location.href = "<?= base_url('fbtest_home/test'); ?>";
-            }
-        </script>
-
-        <script src="<?= base_url('assets/js/jquery-3.2.1.min.js'); ?>"></script>
         <script>
             // Initiate Facebook JS SDK
             window.fbAsyncInit = function () {
@@ -37,35 +21,30 @@
                     version: 'v2.10',
                     status: true // Check for user login status right away
                 });
+                
+                FB.getAuthResponse();
 
                 FB.getLoginStatus(function (response) {
                     console.log('getLoginStatus', response);
-                     loginCheck(response);
+                    loginCheck(response);
                 });
             };
 
-            // Check login status
+// Check login status
             function statusCheck(response)
             {
                 console.log('statusCheck', response.status);
                 if (response.status === 'connected')
                 {
-                    //build user info then login..
-                    buildInfo();
-
                 } else if (response.status === 'not_authorized')
                 {
                     // User logged into facebook, but not to our app.
                 } else {
                     // User not logged into Facebook.
-
-                    //      	FB.login(function(response){
-                    //      		buildInfo();
-                    // });
                 }
             }
 
-            // Get login status
+// Get login status
             function loginCheck()
             {
                 FB.getLoginStatus(function (response) {
@@ -73,22 +52,6 @@
                     statusCheck(response);
                 });
             }
-            function buildInfo() {
-                FB.api('/me', 'GET', {fields: 'id, first_name, last_name, email'}, function (response) {
-
-                    var fbid = response.id;
-                    var fname = response.first_name;
-                    var lname = response.last_name;
-                    var email = response.email;
-
-                    document.getElementById("fbid").innerHTML = fbid;
-                    document.getElementById("fname").innerHTML = fname;
-                    document.getElementById("lname").innerHTML = lname;
-                    document.getElementById("email").innerHTML = email;
-                });
-            }
-
-
 
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
@@ -100,8 +63,6 @@
                 js.src = "//connect.facebook.net/en_US/sdk.js";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
-
         </script>
-
     </body>
 </html>
