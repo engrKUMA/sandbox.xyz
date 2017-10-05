@@ -35,49 +35,38 @@ class Fbtest_home extends CI_Controller {
 
     public function userdash() {
 
-        $this->load->view('fbtest_view/include/fbbasesdk');
+//        $this->load->view('fbtest_view/include/fbbasesdk');
 
         $userToken = $this->facebook->is_authenticated();
-        print_r($userToken);
-//        die('end test');
+        
         if ($userToken != null) {
             $data = array(
                 'title' => 'the userdash Page',
                 'heading' => 'Welcome to the USERDASH Page',
                 'message' => 'This is a test MSG for USERDASH',
-                'usertoken' => $userToken
+                'usertoken' => $userToken,
             );
-            print_r('where is my token');
-            die($userToken);
+            print_r($userToken);
+            $this->load->view('fbtest_view/fbtest_user_dash', $data);
+            
         } else {
-            print_r('no token feedback');
-            die($userToken);
+            print_r('this is the else statement');
+            $this->load->view('fbtest_home/loginpanel');
         }
 
 
 
-//        $this->load->view('fbtest_view/fbtest_user_dash', $data);
+//        
     }
 
     public function logout() {
-
+        
         //logout from app
         $this->facebook->destroy_session();
         redirect('fbtest_home/', redirect);
     }
 
     public function test() {
-        
-        $userToken = $this->facebook->is_authenticated();
-        $this->load->view('fbtest_view/include/fbbasesdk');
-        
-        $fb = $this->facebook->object();
-
-// Get user info
-        $response = $fb->get('/me');
-        $user = $response->getDecodedBody();
-
-        print_r($user);
     }
 
 }

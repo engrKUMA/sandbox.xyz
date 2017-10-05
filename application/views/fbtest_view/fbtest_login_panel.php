@@ -84,6 +84,7 @@
                             $.post(insertUrl, postData, function (o) {
 
                             }, 'json');
+                            window.location.href = "userdash";
                             alert('welcome new user');
                         }
                     }, 'json');

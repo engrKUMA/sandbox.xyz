@@ -21,8 +21,8 @@
         <script type="text/javascript">
 
             function logMeout() {
-                // window.location.href = "<?= base_url('fbtest_home/logout'); ?>";	
-                window.location.href = "<?= base_url('fbtest_home/test'); ?>";
+                logoutUser();
+                window.location.href = "<?= base_url('fbtest_home/logout'); ?>";
             }
         </script>
 
@@ -40,7 +40,7 @@
 
                 FB.getLoginStatus(function (response) {
                     console.log('getLoginStatus', response);
-                     loginCheck(response);
+                    loginCheck(response);
                 });
             };
 
@@ -85,6 +85,12 @@
                     document.getElementById("fname").innerHTML = fname;
                     document.getElementById("lname").innerHTML = lname;
                     document.getElementById("email").innerHTML = email;
+                });
+            }
+
+            function logoutUser() {
+                FB.logout(function (response) {
+                    // user is now logged out
                 });
             }
 

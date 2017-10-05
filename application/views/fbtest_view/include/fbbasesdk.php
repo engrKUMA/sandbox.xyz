@@ -21,7 +21,7 @@ and open the template in the editor.
                     version: 'v2.10',
                     status: true // Check for user login status right away
                 });
-                
+
                 FB.getAuthResponse();
 
                 FB.getLoginStatus(function (response) {

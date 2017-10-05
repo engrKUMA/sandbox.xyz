@@ -48,6 +48,14 @@ class Example extends CI_Controller {
      * JS SDK login example
      */
     public function js_login() {
+        
+        $result = $this->facebook->is_authenticated();
+        
+//        print_r($this->facebook->is_authenticated());
+        print_r($result);
+
+        
+        
         // Load view
         $this->load->view('examples/js');
     }
