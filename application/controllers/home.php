@@ -11,48 +11,54 @@ class Home extends CI_Controller {
         $this->load->library('session');
     }
 
-//    public function index() {
-//
-//        $this->load->view('home/include/header_view');
-//        $this->load->view('home/home_view');
-//        $this->load->view('home/include/footer_view');
-//    }
     public function index() {
 
-        // $this->load->view('new_home/new_home_view');
-        $this->testMe();
+        $this->load->view('frontend_view/index');
     }
 
-    public function testMe(){
+    /*
 
-        $data = array(
-        'title' => 'the title',
-        'heading' => 'My Heading',
-        'message' => 'My Message'
-        );
+      //    public function index() {
+      //
+      //        $this->load->view('home/include/header_view');
+      //        $this->load->view('home/home_view');
+      //        $this->load->view('home/include/footer_view');
+      //    }
+      public function index() {
 
-        $this->load->view('test/test_view', $data);
-    }
+      // $this->load->view('new_home/new_home_view');
+      $this->testMe();
+      }
 
-    public function test_logout(){
-        $this->facebook->destroy_session();
-    }
 
-    public function toDash() {
+      /*
+      public function testMe(){
 
-        $this->load->view('user_dash/dash_view');
-    }
+      $data = array(
+      'title' => 'the title',
+      'heading' => 'My Heading',
+      'message' => 'My Message'
+      );
 
-    /**
-     * JS SDK login example
+      $this->load->view('test/test_view', $data);
+      }
+
+      public function test_logout(){
+      $this->facebook->destroy_session();
+      }
+
+      public function toDash() {
+
+      $this->load->view('user_dash/dash_view');
+      }
+      public function js_login() {
+      // Load view
+      $this->load->view('examples/js');
+      }
+
+      public function logout() {
+      $this->facebook->destroy_session();
+      redirect('/home/test', redirect);
+      }
      */
-    public function js_login() {
-        // Load view
-        $this->load->view('examples/js');
-    }
-    
-    public function logout() {
-        $this->facebook->destroy_session();
-        redirect('/home/test', redirect);
-    }
 }
