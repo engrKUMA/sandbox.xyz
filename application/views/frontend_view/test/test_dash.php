@@ -81,10 +81,8 @@
 
             function logoutUser() {
                 FB.logout(function (response) {
-                    
-                    <?php $this->facebook->destroy_session(); ?>
+<?php $this->facebook->destroy_session(); ?>
                     window.location.href = "/";
-                    // user is now logged out
                 });
             }
 
