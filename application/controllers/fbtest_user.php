@@ -52,8 +52,6 @@ class Fbtest_user extends CI_Controller {
             'lname' => $lname,
             'email' => $email
         ]);
-
-//        print_r($result);
     }
 
 }
