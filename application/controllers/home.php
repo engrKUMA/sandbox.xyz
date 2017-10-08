@@ -16,6 +16,30 @@ class Home extends CI_Controller {
         $this->load->view('frontend_view/index');
     }
     
+    public function userdash() {
+
+        $userToken = $this->facebook->is_authenticated();
+        
+        if ($userToken != null) {
+            $data = array(
+                'title' => 'the userdash Page',
+                'heading' => 'Welcome to the USERDASH Page',
+                'message' => 'This is a test MSG for USERDASH',
+                'usertoken' => $userToken,
+            );
+            print_r($userToken);
+            $this->load->view('frontend_view/test/test_dash', $data);
+            
+        } else {
+            print_r('this is the else statement');
+            $this->load->view('frontend_view/test/test_dash');
+        }
+
+
+
+//        
+    }
+    
 
     /*
 

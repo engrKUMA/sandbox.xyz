@@ -87,32 +87,33 @@
                                 });
                             }
                             function buildInfo() {
-                                FB.api('/me', 'GET', {fields: 'id, first_name, last_name, email'}, function (response) {
+                                FB.api('/me', 'GET', {fields: 'id,first_name,last_name,email'}, function (response) {
 
-                                    var fbid = response.id;
-                                    var fname = response.first_name;
-                                    var lname = response.last_name;
-                                    var email = response.email;
-
-                                    var postData = {'fbid': fbid, 'fname': fname, 'lname': lname, 'email': email};
+                                    var postData = {
+                                        "fbid": response.id,
+                                        "first_name": response.first_name,
+                                        "last_name": response.last_name,
+                                        "email": response.email
+                                    }
+                                    ;
 
                                     var url = "/fbtest_user/login";
 
                                     $.post(url, postData, function (o) {
                                         if (o.result == 1) {
-                                            window.location.href = "userdash";
+                                            window.location.href = "home/userdash";
                                             alert('welcome back user');
                                         } else {
                                             var insertUrl = "/fbtest_user/test_insert";
-
                                             $.post(insertUrl, postData, function (o) {
 
                                             }, 'json');
-                                            window.location.href = "userdash";
+                                            window.location.href = "home/userdash";
                                             alert('welcome new user');
                                         }
                                     }, 'json');
-                                });
+                                }
+                                );
                             }
 
 
