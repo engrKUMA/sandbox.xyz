@@ -13,7 +13,7 @@ class User extends CI_Controller {
         $first_name = $this->input->post('first_name');
         $last_name = $this->input->post('last_name');
         $email = $this->input->post('email');
-        
+
         //setting up session data
         $this->session->set_userdata(array(
             'fbid' => $fbid,
@@ -34,7 +34,7 @@ class User extends CI_Controller {
         if ($result) {
             $this->session->set_userdata(['id' => $result[0]['id']]);
             $this->output->set_output(json_encode(['result' => 1]));
-            
+
             return FALSE;
         }
         $this->output->set_output(json_encode(['result' => 0]));

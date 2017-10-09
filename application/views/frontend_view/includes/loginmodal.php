@@ -41,99 +41,99 @@
         <script src="<?= base_url('assets/js/jquery-3.2.1.min.js'); ?>"></script>
 
         <script>
-            // Initiate Facebook JS SDK
-            window.fbAsyncInit = function () {
-                FB.init({
-                    appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
-                    cookie: true, // enable cookies to allow the server to access the session
-                    xfbml: false, // disable xfbml improves the page load time
-                    version: 'v2.10',
-                    status: true // Check for user login status right away
-                });
+                            // Initiate Facebook JS SDK
+                            window.fbAsyncInit = function () {
+                                FB.init({
+                                    appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
+                                    cookie: true, // enable cookies to allow the server to access the session
+                                    xfbml: false, // disable xfbml improves the page load time
+                                    version: 'v2.10',
+                                    status: true // Check for user login status right away
+                                });
 
-                FB.getLoginStatus(function (response) {
-                    console.log('getLoginStatus', response);
-                    // loginCheck(response);
-                });
-            };
+                                FB.getLoginStatus(function (response) {
+                                    console.log('getLoginStatus', response);
+                                    // loginCheck(response);
+                                });
+                            };
 
-            // Check login status
-            function statusCheck(response) {
-                console.log('statusCheck', response.status);
-                if (response.status === 'connected')
-                {
-                    //build user info then login..
-                    buildInfo();
+                            // Check login status
+                            function statusCheck(response) {
+                                console.log('statusCheck', response.status);
+                                if (response.status === 'connected')
+                                {
+                                    //build user info then login..
+                                    buildInfo();
 
-                } else if (response.status === 'not_authorized')
-                {
-                    // User logged into facebook, but not to our app.
-                } else {
-                    // User not logged into Facebook.
-
-                    //      	FB.login(function(response){
-                    //      		buildInfo();
-                    // });
-                }
-            }
-
-            // Get login status
-            function loginCheck()
-            {
-                FB.getLoginStatus(function (response) {
-                    console.log('loginCheck', response);
-                    statusCheck(response);
-                });
-            }
-
-            function buildInfo() {
-                FB.api('/me', 'GET', {fields: 'id,first_name,last_name,email'}, function (response) {
-
-                    var postData = {
-                        "fbid": response.id,
-                        "first_name": response.first_name,
-                        "last_name": response.last_name,
-                        "email": response.email
-                    };
-
-                    var url = "/user/login";
-
-                    $.post(
-                            url,
-                            postData,
-                            function (o) {
-                                if (o.result == 1) {
-                                    window.location.href = "dashboard";
-                                    alert('welcome back user');
+                                } else if (response.status === 'not_authorized')
+                                {
+                                    // User logged into facebook, but not to our app.
                                 } else {
-                                    window.location.href = "dashboard";
-                                    alert('welcome new user');
+                                    // User not logged into Facebook.
+
+                                    //      	FB.login(function(response){
+                                    //      		buildInfo();
+                                    // });
                                 }
-                            },
-                            'json'
-                    );
-                }
-                );
-            }
+                            }
+
+                            // Get login status
+                            function loginCheck()
+                            {
+                                FB.getLoginStatus(function (response) {
+                                    console.log('loginCheck', response);
+                                    statusCheck(response);
+                                });
+                            }
+
+                            function buildInfo() {
+                                FB.api('/me', 'GET', {fields: 'id,first_name,last_name,email'}, function (response) {
+
+                                    var postData = {
+                                        "fbid": response.id,
+                                        "first_name": response.first_name,
+                                        "last_name": response.last_name,
+                                        "email": response.email
+                                    };
+
+                                    var url = "/user/login";
+
+                                    $.post(
+                                            url,
+                                            postData,
+                                            function (o) {
+                                                if (o.result == 1) {
+                                                    window.location.href = "dashboard";
+                                                    alert('welcome back user');
+                                                } else {
+                                                    window.location.href = "dashboard";
+                                                    alert('welcome new user');
+                                                }
+                                            },
+                                            'json'
+                                            );
+                                }
+                                );
+                            }
 
 
-            function triggerLogin() {
-                // Trigger login
-                FB.login(function () {
-                    loginCheck();
-                }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
-            }
+                            function triggerLogin() {
+                                // Trigger login
+                                FB.login(function () {
+                                    loginCheck();
+                                }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
+                            }
 
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//connect.facebook.net/en_US/sdk.js";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
+                            (function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) {
+                                    return;
+                                }
+                                js = d.createElement(s);
+                                js.id = id;
+                                js.src = "//connect.facebook.net/en_US/sdk.js";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));
 
         </script>
 

@@ -11,8 +11,8 @@ class Home extends CI_Controller {
 
         $this->load->view('frontend_view/index');
     }
-    
-    public function logout(){
+
+    public function logout() {
         $this->facebook->destroy_session();
         $this->session->sess_destroy();
         redirect('/home');
