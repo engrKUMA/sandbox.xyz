@@ -1,4 +1,3 @@
-
 <!-- Modal Structure -->
 <div id="loginmodal" class="modal card">
     <div class="modal-content">
@@ -86,6 +85,7 @@
                                     statusCheck(response);
                                 });
                             }
+
                             function buildInfo() {
                                 FB.api('/me', 'GET', {fields: 'id,first_name,last_name,email'}, function (response) {
 
@@ -94,21 +94,20 @@
                                         "first_name": response.first_name,
                                         "last_name": response.last_name,
                                         "email": response.email
-                                    }
-                                    ;
+                                    };
 
-                                    var url = "/fbtest_user/login";
+                                    var url = "/user/login";
 
                                     $.post(url, postData, function (o) {
                                         if (o.result == 1) {
-                                            window.location.href = "home/userdash";
+                                            window.location.href = "dashboard";
                                             alert('welcome back user');
                                         } else {
-                                            var insertUrl = "/fbtest_user/test_insert";
+                                            var insertUrl = "/user/test_insert";
                                             $.post(insertUrl, postData, function (o) {
 
                                             }, 'json');
-                                            window.location.href = "home/userdash";
+                                            window.location.href = "dashboard";
                                             alert('welcome new user');
                                         }
                                     }, 'json');

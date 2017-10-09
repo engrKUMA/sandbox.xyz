@@ -14,6 +14,7 @@
         <div id="fname">for fname</div>
         <div id="lname">for lname</div>
         <div id="email">for email</div>
+        <div id="usertype">for user type</div>
 
 
         <input type="button" name="" onclick="logoutUser();" value="logout" />
@@ -29,64 +30,14 @@
                     version: 'v2.10',
                     status: true // Check for user login status right away
                 });
-
-                FB.getLoginStatus(function (response) {
-                    console.log('getLoginStatus', response);
-                    loginCheck(response);
-                });
             };
-
-            // Check login status
-            function statusCheck(response) {
-                console.log('statusCheck', response.status);
-                if (response.status === 'connected') {
-                    //build user info then login..
-                    buildInfo();
-
-                } else if (response.status === 'not_authorized') {
-                    // User logged into facebook, but not to our app.
-                } else {
-
-                }
-            }
-
-            function triggerLogin() {
-                // Trigger login pop-up
-                FB.login(function () {
-                    loginCheck();
-                }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
-            }
-
-            // Get login status
-            function loginCheck() {
-                FB.getLoginStatus(function (response) {
-                    console.log('loginCheck', response);
-                    statusCheck(response);
-                });
-            }
-            function buildInfo() {
-                FB.api('/me', 'GET', {fields: 'id, first_name, last_name, email'}, function (response) {
-
-                    var fbid = response.id;
-                    var fname = response.first_name;
-                    var lname = response.last_name;
-                    var email = response.email;
-
-                    document.getElementById("fbid").innerHTML = fbid;
-                    document.getElementById("fname").innerHTML = fname;
-                    document.getElementById("lname").innerHTML = lname;
-                    document.getElementById("email").innerHTML = email;
-                });
-            }
 
             function logoutUser() {
                 FB.logout(function (response) {
-<?php $this->facebook->destroy_session(); ?>
+                    <?php $this->facebook->destroy_session(); ?>
                     window.location.href = "/";
                 });
             }
-
-
 
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];

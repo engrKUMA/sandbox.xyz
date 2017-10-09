@@ -1,6 +1,6 @@
 <?php
 
-class Fbtest_user extends CI_Controller {
+class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -10,15 +10,24 @@ class Fbtest_user extends CI_Controller {
     public function login() {
 
         $fbid = $this->input->post('fbid');
-        $fname = $this->input->post('first_name');
-        $lname = $this->input->post('last_name');
+        $first_name = $this->input->post('first_name');
+        $last_name = $this->input->post('last_name');
         $email = $this->input->post('email');
+
+        $data = array(
+                'userID' => $this->input->post('userID'),
+                'first_name' => $this->input->post('first_name'),
+                'last_name' => $this->input->post('last_name'),
+                'email' => $this->input->post('email')
+        );
+
+        $this->session->set_userdata($data);
 
 
         $result = $this->user_model->get([
             'fbid' => $fbid,
-            'first_name' => $fname,
-            'last_name' => $lname,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'email' => $email
         ]);
 
@@ -43,15 +52,15 @@ class Fbtest_user extends CI_Controller {
     public function test_insert() {
 
         $fbid = $this->input->post('fbid');
-        $fname = $this->input->post('first_name');
-        $lname = $this->input->post('last_name');
+        $first_name = $this->input->post('first_name');
+        $last_name = $this->input->post('last_name');
         $email = $this->input->post('email');
 
 
         $result = $this->user_model->insert([
             'fbid' => $fbid,
-            'first_name' => $fname,
-            'last_name' => $lname,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'email' => $email
         ]);
     }
