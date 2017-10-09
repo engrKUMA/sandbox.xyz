@@ -13,16 +13,14 @@ class User extends CI_Controller {
         $first_name = $this->input->post('first_name');
         $last_name = $this->input->post('last_name');
         $email = $this->input->post('email');
-
-        $data = array(
-                'userID' => $this->input->post('userID'),
-                'first_name' => $this->input->post('first_name'),
-                'last_name' => $this->input->post('last_name'),
-                'email' => $this->input->post('email')
-        );
-
-        $this->session->set_userdata($data);
-
+        
+        //setting up session data
+        $this->session->set_userdata(array(
+            'fbid' => $fbid,
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'email' => $email
+        ));
 
         $result = $this->user_model->get([
             'fbid' => $fbid,
@@ -36,12 +34,11 @@ class User extends CI_Controller {
         if ($result) {
             $this->session->set_userdata(['id' => $result[0]['id']]);
             $this->output->set_output(json_encode(['result' => 1]));
-
-            $this->test_insert();
-
+            
             return FALSE;
         }
         $this->output->set_output(json_encode(['result' => 0]));
+        $this->test_insert();
     }
 
     public function test_get() {
