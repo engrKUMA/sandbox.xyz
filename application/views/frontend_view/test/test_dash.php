@@ -8,7 +8,7 @@
 
         <h1><?= $heading; ?></h1>
         <h3><?= $message; ?></h3>
-        <h3>User Token: <?= $usertoken; ?></h3>
+        <h3>User Token: <?= $usertype; ?></h3>
 
         <div id="fbid">for fbid</div>
         <div id="fname">for fname</div>
@@ -34,8 +34,7 @@
 
             function logoutUser() {
                 FB.logout(function (response) {
-<?php $this->facebook->destroy_session(); ?>
-                    window.location.href = "/";
+                    window.location.href = "home/logout";
                 });
             }
 
