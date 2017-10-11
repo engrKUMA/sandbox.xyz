@@ -70,10 +70,6 @@
                                     // User logged into facebook, but not to our app.
                                 } else {
                                     // User not logged into Facebook.
-
-                                    //      	FB.login(function(response){
-                                    //      		buildInfo();
-                                    // });
                                 }
                             }
 
