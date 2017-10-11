@@ -23,24 +23,50 @@ class Dashboard extends CI_Controller {
 
     public function user_client() {
 
-        $data = array(
+        $userInfo = $this->buildUserInfo();
+
+        $data = json_decode(json_encode($userInfo), True);
+        
+        $thedata = array(
             'title' => 'the userdash Page',
             'heading' => 'Welcome to the USERDASH Page',
             'message' => 'This is a test MSG for USERDASH',
-            'usertype' => 'client',
+            'fbid' => $data['fbid'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'usertype' => $data['type'],
+
         );
-        $this->load->view('frontend_view/test/test_dash', $data);
+
+
+        $this->load->view('frontend_view/test/test_dash', $thedata);
     }
 
     public function user_agent() {
+      $userInfo = $this->buildUserInfo();
 
-        $data = array(
+      //converting sdtObject to json format
+
+        $data = json_decode(json_encode($userInfo), True);
+        
+
+        //how to call an item in a json format
+        // $var['object key'] 
+        $thedata = array(
             'title' => 'the userdash Page',
             'heading' => 'Welcome to the USERDASH Page',
             'message' => 'This is a test MSG for USERDASH',
-            'usertype' => 'agent',
+            'fbid' => $data['fbid'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'usertype' => $data['type'],
+
         );
-        $this->load->view('frontend_view/test/test_dash', $data);
+
+
+        $this->load->view('frontend_view/test/test_dash', $thedata);
     }
 
     //function to check the user type of the logged in user in the database and returns user type
@@ -49,6 +75,14 @@ class Dashboard extends CI_Controller {
         $userType = $this->user_model->checkUserType();
 
         return $userType;
+    }
+
+    //function to build get user info from DB
+    function buildUserInfo(){
+          $userInfo = $this->user_model->buildUserInfo();
+
+
+          return $userInfo;          
     }
 
     //testing area

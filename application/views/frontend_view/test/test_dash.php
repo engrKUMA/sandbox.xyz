@@ -8,13 +8,12 @@
 
         <h1><?= $heading; ?></h1>
         <h3><?= $message; ?></h3>
-        <h3>User Token: <?= $usertype; ?></h3>
 
-        <div id="fbid">for fbid</div>
-        <div id="fname">for fname</div>
-        <div id="lname">for lname</div>
-        <div id="email">for email</div>
-        <div id="usertype">for user type</div>
+        <div id="fbid">FB ID:<?= $fbid; ?></div>
+        <div id="fname">First name:<?= $first_name; ?></div>
+        <div id="lname">Last name:<?= $last_name; ?></div>
+        <div id="email">Email:<?= $email; ?></div>
+        <div id="usertype">User type:<?= $usertype; ?></div>
 
 
         <input type="button" name="" onclick="logoutUser();" value="logout" />

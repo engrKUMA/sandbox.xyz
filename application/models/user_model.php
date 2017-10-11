@@ -37,4 +37,15 @@ class User_model extends CI_Model {
         return $this->db->get_where('users', ['fbid' => $FBID])->row()->type;
     }
 
+    public function buildUserInfo() {
+
+        $FBID = $this->session->userdata('fbid');
+
+//        $userType = $this->db->get_where('users', ['fbid' => $FBID])->row()->type;
+//        $data = $rs->result_array();
+//        $userType = ($data[0]['type']);
+
+        return $this->db->get_where('users', ['fbid' => $FBID])->row();
+    }
+
 }
