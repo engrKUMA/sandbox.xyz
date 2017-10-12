@@ -10,50 +10,48 @@
 	<?php include "includes/navbar.php" ?>
 	<!-- navbar -->
 	
-	<!-- log in modal -->
-	<?php include "includes/loginmodal.php" ?>
-	<!-- log in modal -->
-
-	<!-- sign up modal -->
-	<?php include "includes/signupmodal.php" ?>
-	<!-- sign up modal -->
-	
-	<section class="row">
+	<section class="row container">
 
 		<!-- search results -->
-		<div class="col l8 m10 s12 push-m1">
+		<div class="col l8 m10 s12 push-m1" id="result">
 
 			<!-- result#1 -->
 			<div class="row">
 				<div class="col s12">
 					<div class="card hoverable">
-						<div class="card-image col l4">
+						<div class="card-image col l6">
 							<a href="view.php">
-								<img src="img/sample/sample.jpg" width="100%">
+								<img src="img/sample/sample.jpg" height="228px" style="padding: 11.250px 0px;">
 							</a>
 						</div>
 						<div class="card-stacked">
 							<div class="card-content">
-								<p class="title">
+								<a href="view.php" class="title">
 									Amora Model At Natania Homes
-								</p>
+								</a>
 								<p class="location">
 									<i class="fa fa-map-marker prefix color-theme" aria-hidden="true"></i>
 									Gen. Trias, Cavite
 								</p>
-								<p class="details">
-									Added today
-									<br>
-									3 bedrooms 2 bathrooms
-
+								<p class="price">
+									₱ 939,293
 								</p> 
-								<p class="right-align price">
-									Php 939,293
+								<p class="details">
+									Brand New Classification
+									<br>
+									3 bedrooms 
+									<br>
+									2 bathrooms
+
 								</p> 
 
 							</div>
-							<div class="card-action right-align link">
-								<a type="btn" href="view.php" class="waves-effect waves-light">view listing <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+							<div class="card-action link center-align">
+								<a class="btn detail-btn" href="view.php" >More Details</a>
+
+								<a class="btn detail-btn" href="search_results.php"><i class="fa fa-phone" aria-hidden="true"></i></a>
+
+								<a class="btn detail-btn" href="search_results.php" ><i class="fa fa-envelope" aria-hidden="true"></i></a>
 							</div>
 						</div>
 					</div>
@@ -65,33 +63,39 @@
 			<div class="row">
 				<div class="col s12">
 					<div class="card hoverable">
-						<div class="card-image col l4">
+						<div class="card-image col l6">
 							<a href="view.php">
-								<img src="img/sample/sample.jpg" width="100%">
+								<img src="img/sample/sample2.jpg" height="228px" style="padding: 11.250px 0px;">
 							</a>
 						</div>
 						<div class="card-stacked">
 							<div class="card-content">
-								<p class="title">
+								<a href="view.php" class="title">
 									Amora Model At Natania Homes
-								</p>
+								</a>
 								<p class="location">
 									<i class="fa fa-map-marker prefix color-theme" aria-hidden="true"></i>
 									Gen. Trias, Cavite
 								</p>
-								<p class="details">
-									Added today
-									<br>
-									3 bedrooms 2 bathrooms
-
+								<p class="price">
+									₱ 939,293
 								</p> 
-								<p class="right-align price">
-									Php 939,293
+								<p class="details">
+									Brand New Classification
+									<br>
+									3 bedrooms 
+									<br>
+									2 bathrooms
+
 								</p> 
 
 							</div>
-							<div class="card-action right-align link">
-								<a type="btn" href="view.php" class="waves-effect waves-light">view listing <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+							<div class="card-action link center-align">
+								<a class="btn detail-btn" href="view.php" >More Details</a>
+
+								<a class="btn detail-btn" href="search_results.php"><i class="fa fa-phone" aria-hidden="true"></i></a>
+
+								<a class="btn detail-btn" href="search_results.php" ><i class="fa fa-envelope" aria-hidden="true"></i></a>
 							</div>
 						</div>
 					</div>
@@ -103,33 +107,39 @@
 			<div class="row">
 				<div class="col s12">
 					<div class="card hoverable">
-						<div class="card-image col l4">
+						<div class="card-image col l6">
 							<a href="view.php">
-								<img src="img/sample/sample.jpg" width="100%">
+								<img src="img/sample/sample3.jpg" height="228px" style="padding: 11.250px 0px;">
 							</a>
 						</div>
 						<div class="card-stacked">
 							<div class="card-content">
-								<p class="title">
+								<a href="view.php" class="title">
 									Amora Model At Natania Homes
-								</p>
+								</a>
 								<p class="location">
 									<i class="fa fa-map-marker prefix color-theme" aria-hidden="true"></i>
 									Gen. Trias, Cavite
 								</p>
-								<p class="details">
-									Added today
-									<br>
-									3 bedrooms 2 bathrooms
-
+								<p class="price">
+									₱ 939,293
 								</p> 
-								<p class="right-align price">
-									Php 939,293
+								<p class="details">
+									Brand New Classification
+									<br>
+									3 bedrooms 
+									<br>
+									2 bathrooms
+
 								</p> 
 
 							</div>
-							<div class="card-action right-align link">
-								<a type="btn" href="view.php" class="waves-effect waves-light">view listing <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+							<div class="card-action link center-align">
+								<a class="btn detail-btn" href="view.php" >More Details</a>
+
+								<a class="btn detail-btn" href="search_results.php"><i class="fa fa-phone" aria-hidden="true"></i></a>
+
+								<a class="btn detail-btn" href="search_results.php" ><i class="fa fa-envelope" aria-hidden="true"></i></a>
 							</div>
 						</div>
 					</div>

@@ -9,27 +9,20 @@
 	<!-- navbar -->
 	<?php include "includes/navbar.php" ?>
 	<!-- navbar -->
-	
-	<!-- log in modal -->
-	<?php include "includes/loginmodal.php" ?>
-	<!-- log in modal -->
 
-	<!-- sign up modal -->
-	<?php include "includes/signupmodal.php" ?>
-	<!-- sign up modal -->
-
-	<section class="row">
+	<section class="row container">
 		<div class="col l8 m10 s12 push-m1">
 
 			<!-- start: title -->
-			<div class="row center">
-				<h3 class="title-font color-theme">
+			<div class="row center card">
+				<br>
+				<h5 class="title-font color-theme">
 					Amora Model At Natania Homes
-				</h3>
-				<h5 class="color-theme">
+				</h5>
+				<p class="color-theme">
 					<i class="fa fa-map-marker prefix color-theme" aria-hidden="true"></i>
 					Gen. Trias, Cavite
-				</h5>
+				</p>
 			</div>
 			<!-- end: title -->
 
@@ -43,6 +36,7 @@
 			</div>
 			<!-- end: images -->
 
+			<!-- start: info 1	 -->
 			<div class="row center">
 				<div class="card">
 		            <div class="card-content">
@@ -52,7 +46,7 @@
 			            			<span class="price-font">₱ 939,293</span>		            				
 		            			</div>
 		            			<div class="row">
-				            		<span>Price</span>		            				
+				            		<span class="label-font">Price</span>		            				
 		            			</div>
 			            	</div>
 			            	<div class="col l3 m6 s6">
@@ -60,7 +54,7 @@
 			            			<span class="details-font">374 m²</span>
 			            		</div>
 			            		<div class="row">
-			            			<span>Floor Area</span>
+			            			<span class="label-font">Floor Area</span>
 			            		</div>
 			            	</div>
 			            	<div class="col l3 m6 s6">
@@ -68,8 +62,7 @@
 			            			<span class="details-font">2</span>
 			            		</div>
 			            		<div class="row">
-			            			<i class="fa fa-shower fa-2x" aria-hidden="true"></i>
-				            		<span>Bathroom</span>
+				            		<span class="label-font">Bathroom</span>
 			            		</div> 
 			            	</div>
 			            	<div class="col l3 m6 s6">
@@ -77,8 +70,7 @@
 			            			<span class="details-font">3</span>
 			            		</div>
 			            		<div class="row">
-			            			<i class="fa fa-bed fa-2x" aria-hidden="true"></i>
-				            		<span>Bedroom</span>
+				            		<span class="label-font">Bedroom</span>
 			            		</div>
 			            	</div>
 		            	</div>		            	
@@ -86,6 +78,26 @@
 		            </div>
 	          	</div>
 			</div>
+			<!-- end: info 1   -->
+
+			<!-- start:  description	 -->
+			<div class="row center">
+				<div class="card">
+		            <div class="card-content">
+		            	<div class="row">
+		            		<p>
+            				Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		            		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		            		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		            		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		            		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		            		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.	
+		            		</p>
+		            	</div>		            	
+		            </div>
+	          	</div>
+			</div>
+			<!-- end: description		 -->
 
 		</div>
 

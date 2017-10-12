@@ -7,13 +7,13 @@
         <div class="nav-wrapper">
 
             <!-- side nav trigger button -->
-            <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
+            <!-- hidden in large screens -->
+            <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only right"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
 
             <!-- nav bar menu -->
-            <a href="index.php" class="brand-logo"><img src="" width="220px" style="margin-top: 0px">Logo Here</a>
+            <a href="index.php" class="brand-logo"><img src="" width="220px" style="margin-top: 0px">HAPPY Logo</a>
 
             <ul class="right hide-on-med-and-down">
-                <!-- <li><a href="indexsearch_results.php">Home</a></li> -->
                 <li>
                     <a id="buy-dropdown" class="dropdown-button waves-effect waves-light center" data-activates="buyMenu" onclick="chevBuy()">Buy <i id="chevBuy" class="fa fa-chevron-down" aria-hidden="true"></i></a>
                 </li>
@@ -26,9 +26,16 @@
                 <li><a href="search_results.php">Request</a></li>
                 <li><a href="search_results.php">Ask</a></li>
                 <li><a href="search_results.php">Post</a></li>
-                <li><a class="dropdown-button waves-effect waves-light" data-activates="accountMenu" onclick="chevAccount()"><i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></a></li>
+                <li>
+                    <a id="login-register-btn" onclick="toLogin();" class="waves-effect waves-light center"><i class="fa fa-user" aria-hidden="true"></i> Login / Register</a>
+                </li>
+                <!-- <li>
+                        <a id="offer-property-btn" href="offer.php" class="waves-effect waves-light center"><i class="fa fa-plus" aria-hidden="true"></i> Offer Property</a>
+                </li> -->
             </ul>
         </div>
+
+
 
         <!-- Buy Menu -->
         <ul id="buyMenu" class="dropdown-content">
@@ -87,7 +94,15 @@
 </div>
 <!-- Side nav menu -->
 <ul id="slide-out" class="side-nav">
-    <li><a id="account_menu" class="dropdown-button waves-effect waves-light" data-activates="accountMenuSide" onclick="chevAccount()"><i class="fa fa-user-circle-o fa-4x white-text" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Account</a></li>
+
+    <li><a id="logo-sidenav-menu" href="index.php" class="waves-effect waves-light center">Happy Logo</a></li>
+
+    <li>
+        <a id="login-register-btn" onclick="toLogin();" class="waves-effect waves-light"> Login / Register<i class="fa fa-user-circle-o fa-2x" aria-hidden="true" ></i></a>
+    </li>
+    <!-- <li>
+            <a id="offer-property-btn" href="offer.php" class="waves-effect waves-light"> Offer Property<i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
+    </li> -->
     <li>
         <a class="dropdown-button waves-effect waves-light" data-activates="buyMenuSide" onclick="chevBuy()">Buy <i id="chevBuySide" class="fa fa-chevron-down" aria-hidden="true"></i></a>
     </li>
@@ -155,3 +170,13 @@
     <li><a href="#signupmodal" class="center">Sign Up</a></li>
 </ul>
 
+
+<script type="text/javascript">
+    
+    //call home controller then login function
+    function toLogin(){
+        
+        window.location.href = "home/login";
+    }
+    </script>
+    

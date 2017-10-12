@@ -11,6 +11,11 @@ class Home extends CI_Controller {
 
         $this->load->view('frontend_view/index');
     }
+    
+    public function login(){
+        
+        $this->load->view('frontend_view/login');
+    }
 
     public function logout() {
         $this->facebook->destroy_session();

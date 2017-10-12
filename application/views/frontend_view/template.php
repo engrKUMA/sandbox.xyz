@@ -9,16 +9,12 @@
 	<!-- navbar -->
 	<?php include "includes/navbar.php" ?>
 	<!-- navbar -->
-	
-	<!-- log in modal -->
-	<?php include "includes/loginmodal.php" ?>
-	<!-- log in modal -->
 
-	<!-- sign up modal -->
-	<?php include "includes/signupmodal.php" ?>
-	<!-- sign up modal -->
+	<section class="row container">
+		
+	</section>
 
-	
+
 
     <?php include "includes/footer.php" ?>
 
