@@ -1,0 +1,327 @@
+/*google fonts : Ubuntu*/
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+
+/* ==================================================
+  body Styling
+  ================================================== */
+.row {
+  margin-bottom: 0px;
+}
+
+body{
+  background-color: #eeeeee ;
+
+}
+
+
+/* ==================================================
+  Nav bar Styling
+  ================================================== */
+nav {
+	background-color: #5c6bc0  !important;
+  z-index: 99 !important;
+}
+.dropdown-content {
+  min-width: 150px;
+  /*position: static !important;*/
+}
+nav ul a {
+	color: #fff;
+	font-family: 'Ubuntu', sans-serif;
+	font-size:  15px;
+}
+#buy-dropdown,#pre-sell-dropdown ,#rent-dropdown {
+  min-width: 150px;
+}
+
+/* ==================================================
+  Dropdown Styling
+  ================================================== */
+
+.dropdown-content li>a, .dropdown-content li>span {
+	background-color: #fff;
+  color: #5c6bc0 ;
+  font-size:  16px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* ==================================================
+  Side Nav Styling
+  ================================================== */
+
+.side-nav {
+	background-color: #fff;
+}
+#logo-sidenav-menu{
+  background-color: #5c6bc0 ;
+  height: 150px;
+  padding-top: 50px;
+}
+
+.side-nav li>a {
+	color: #000 ;
+	font-family: 'Ubuntu', sans-serif;
+	font-size:  16px;
+}
+
+/* ==================================================
+  Hero Styling
+================================================== */
+.dashboard-header {
+  color: #5c6bc0  !important;
+  font-family: 'Ubuntu', sans-serif;
+}
+.hero {
+  display: table;
+  position: relative;
+  background-image: url(../img/home/hero2.jpg);
+  background-size: cover;
+  padding: 100px 0;
+  color: #fff;
+  width: 100%;
+  height: 100vh;
+}
+
+.hero:after {
+  content: '';
+  z-index: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+/* ==================================================
+  Tabs Styling
+================================================== */
+
+.theme-color-blend {
+  background-color: #fff;
+}
+
+.tabs .tab a:hover{
+  background-color: #fff ;
+  color: #5c6bc0;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  18px;
+}
+
+.tabs .tab a.active{
+  background-color: #fff ;
+  color: #5c6bc0;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  18px;
+}
+
+.tabs .tab a{
+  background-color: #5c6bc0 ;
+  color: #fff ;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  18px;
+}
+
+.tabs .indicator{
+  display: none;
+    position: absolute;
+    bottom: 0;
+    height: 7px;
+    background-color: #5c6bc0 ;
+    will-change: left, right;
+}
+
+.color-theme{
+    color: #5c6bc0 ;
+}
+.color-theme-background{
+  background-color: #5c6bc0 ;
+  color: #fff;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* ==================================================
+  Forms Styling
+================================================== */
+
+input{
+  color: #000;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  18px;
+}
+
+.select-dropdown{
+  /*min-width: 150px;*/
+  /*position: relative !important;*/
+  /*z-index: 99 !important;*/
+}
+
+.circle-btn {
+  border-radius: 50px;
+  background-color: #5c6bc0 ;
+  color: #fff;
+  font-family: 'Ubuntu', sans-serif;
+  /*color: #9ad3de;*/
+}
+.circle-btn:hover {
+  background-color: #fff;
+  color: #5c6bc0 ;
+}
+
+.circle-btn:focus {
+  color: #fff;
+}
+
+
+
+/* ==================================================
+  scrolltop Styling
+================================================== */
+
+.scrolltop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #5c6bc0 ;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+}
+
+.scrolltop:hover, .scrolltop:active, .scrolltop:focus {
+  color: #fff !important;
+  opacity: .75;
+}
+
+/* ==================================================
+  Results Styling
+================================================== */
+
+.title {
+  color: #5c6bc0  !important;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  18px;
+}
+.location {
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  14px;
+}
+.price {
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  14px;
+  font-weight: 700;
+}
+.link { 
+  color: #c3c3c3 !important;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  18px;
+}
+.details{
+  color: #000 !important;
+  font-size:  14px;
+}
+
+.filter{
+  background-color: #fff;
+}
+.stay-panel{
+  position: static !important;
+}
+.card .card-content{
+  padding: 12px 24px !important; 
+}
+
+.detail-btn {
+  /*border-radius: 50px;*/
+  background-color: #5c6bc0 ;
+  color: #fff;
+  font-family: 'Ubuntu', sans-serif;
+  letter-spacing: 0px;
+  padding: 0px 12px;
+  /*color: #9ad3de;*/
+}
+.detail-btn:hover {
+  background-color: #fff;
+  color: #5c6bc0 ;
+}
+
+.detail-btn:focus {
+  color: #fff;
+}
+
+#result .row {
+  margin-bottom: 0px;
+}
+
+
+/* ==================================================
+  Footer Styling
+================================================== */
+
+.page-footer {
+  background-color: #5c6bc0; 
+  padding: 0px;
+  /*height: 50px;*/
+}
+
+/* ==================================================
+  View Styling
+================================================== */
+
+.title-font {
+  font-family: 'Nunito', sans-serif;
+  /*font-weight: 300 !important;*/
+}
+
+.details-font {
+  font-family: 'Nunito', sans-serif;
+  color: #5c6bc0  !important;
+  font-weight: 700;
+  font-size: 16px;
+}
+.price-font {
+  font-family: 'Nunito', sans-serif;
+  color: #5c6bc0  !important;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.label-font {
+  font-size: 12px;
+  color: #616161;
+}
+
+.carousel{
+  height: 250px;
+}
+
+
+/* ==================================================
+  Dashboard Styling
+================================================== */
+
+.collection a.collection-item {
+  color: #5c6bc0;
+}
+.collection-active {
+  background-color: #5c6bc0 !important;
+  color: #fff !important;
+}
+.dashboard-header {
+  color: #5c6bc0  !important;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.sticky {
+  position: fixed;
+  max-width: 32%;
+}

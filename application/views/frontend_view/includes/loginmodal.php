@@ -84,7 +84,7 @@
 
                             function buildInfo() {
                                 FB.api('/me', 'GET', {fields: 'id,first_name,last_name,email'}, function (response) {
-
+                                            
                                     var postData = {
                                         "fbid": response.id,
                                         "first_name": response.first_name,
