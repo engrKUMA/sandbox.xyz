@@ -11,7 +11,7 @@
             <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only right"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
 
             <!-- nav bar menu -->
-            <a href="index.php" class="brand-logo"><img src="" width="220px" style="margin-top: 0px">HAPPY Logo</a>
+            <a href="<?= base_url('');?>" class="brand-logo"><img src="" width="220px" style="margin-top: 0px">HAPPY Logo</a>
 
             <ul class="right hide-on-med-and-down">
                 <li>
@@ -29,13 +29,8 @@
                 <li>
                     <a id="login-register-btn" onclick="toLogin();" class="waves-effect waves-light center"><i class="fa fa-user" aria-hidden="true"></i> Login / Register</a>
                 </li>
-                <!-- <li>
-                        <a id="offer-property-btn" href="offer.php" class="waves-effect waves-light center"><i class="fa fa-plus" aria-hidden="true"></i> Offer Property</a>
-                </li> -->
             </ul>
         </div>
-
-
 
         <!-- Buy Menu -->
         <ul id="buyMenu" class="dropdown-content">
@@ -100,9 +95,6 @@
     <li>
         <a id="login-register-btn" onclick="toLogin();" class="waves-effect waves-light"> Login / Register<i class="fa fa-user-circle-o fa-2x" aria-hidden="true" ></i></a>
     </li>
-    <!-- <li>
-            <a id="offer-property-btn" href="offer.php" class="waves-effect waves-light"> Offer Property<i class="fa fa-plus fa-2x" aria-hidden="true"></i></a>
-    </li> -->
     <li>
         <a class="dropdown-button waves-effect waves-light" data-activates="buyMenuSide" onclick="chevBuy()">Buy <i id="chevBuySide" class="fa fa-chevron-down" aria-hidden="true"></i></a>
     </li>
@@ -172,11 +164,17 @@
 
 
 <script type="text/javascript">
-    
+
     //call home controller then login function
-    function toLogin(){
-        
-        window.location.href = "home/login";
+    function toLogin() {
+
+        window.location.href = "account/login";
     }
-    </script>
-    
+
+//change something using sessions and codeigniter calls
+//    if(<?= $this->session->userdata('usersFBID');?> != null){
+//       document.getElementById("login-register-btn").innerHTML = "test change"; 
+//    } else{
+//        toLogin();
+//    }
+</script>

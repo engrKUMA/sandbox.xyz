@@ -47,10 +47,8 @@ class Dashboard extends CI_Controller {
       $userInfo = $this->buildUserInfo();
 
       //converting sdtObject to json format
-
         $data = json_decode(json_encode($userInfo), True);
         
-
         //how to call an item in a json format
         // $var['object key'] 
         $thedata = array(

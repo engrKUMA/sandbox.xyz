@@ -1,15 +1,15 @@
 <?php
 
-class User_model extends CI_Model {
+class Users_model extends CI_Model {
 
-    public function get($fbid = null) {
+    public function get($usersemail = null) {
 
-        if ($fbid === null) {
+        if ($usersemail === null) {
             $query = $this->db->get('users');
-        } elseif (is_array($fbid)) {
-            $query = $this->db->get_where('users', $fbid);
+        } elseif (is_array($usersemail)) {
+            $query = $this->db->get_where('users', $usersemail);
         } else {
-            $query = $this->db->get_where('users', ['fbid' => $fbid]);
+            $query = $this->db->get_where('users', ['fbuserEMAIL' => $usersemail]);
         }
 
         return $query->result_array();
@@ -28,24 +28,24 @@ class User_model extends CI_Model {
 
     public function checkUserType() {
 
-        $FBID = $this->session->userdata('fbid');
+        $usersEMAIL = $this->session->userdata('usersEMAIL');
 
 //        $userType = $this->db->get_where('users', ['fbid' => $FBID])->row()->type;
 //        $data = $rs->result_array();
 //        $userType = ($data[0]['type']);
-
-        return $this->db->get_where('users', ['fbid' => $FBID])->row()->type;
+        
+        return $this->db->get_where('users', ['usersEMAIL' => $usersEMAIL])->row()->usersUSERTYPE;
     }
 
     public function buildUserInfo() {
 
-        $FBID = $this->session->userdata('fbid');
+        $usersEMAIL = $this->session->userdata('usersEMAIL');
 
 //        $userType = $this->db->get_where('users', ['fbid' => $FBID])->row()->type;
 //        $data = $rs->result_array();
 //        $userType = ($data[0]['type']);
 
-        return $this->db->get_where('users', ['fbid' => $FBID])->row();
+        return $this->db->get_where('users', ['usersEMAIL' => $usersEMAIL])->row();
     }
 
 }

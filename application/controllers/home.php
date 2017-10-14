@@ -9,18 +9,9 @@ class Home extends CI_Controller {
 
     public function index() {
 
+        $this->load->view('frontend_view/includes/header');
         $this->load->view('frontend_view/index');
-    }
-    
-    public function login(){
-        
-        $this->load->view('frontend_view/login');
-    }
-
-    public function logout() {
-        $this->facebook->destroy_session();
-        $this->session->sess_destroy();
-        redirect('/home');
+        $this->load->view('frontend_view/includes/footer');
     }
 
 }

@@ -4,7 +4,7 @@ class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model('users_model');
     }
 
     public function login() {
@@ -16,34 +16,29 @@ class User extends CI_Controller {
 
         //setting up session data
         $this->session->set_userdata(array(
-            'fbid' => $fbid,
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'email' => $email
+            'usersFBID' => $fbid,
+            'usersFIRST_NAME' => $first_name,
+            'usersLAST_NAME' => $last_name,
+            'usersEMAIL' => $email
         ));
 
-        $result = $this->user_model->get([
-            'fbid' => $fbid,
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'email' => $email
+        $result = $this->users_model->get([
+            'usersFBID' => $fbid,
+            'usersFIRST_NAME' => $first_name,
+            'usersLAST_NAME' => $last_name,
+            'usersEMAIL' => $email
         ]);
 
         $this->output->set_content_type('application_json');
 
         if ($result) {
-            $this->session->set_userdata(['id' => $result[0]['id']]);
+            $this->session->set_userdata(['usersEMAIL' => $result[0]['usersEMAIL']]);
             $this->output->set_output(json_encode(['result' => 1]));
 
             return FALSE;
         }
         $this->output->set_output(json_encode(['result' => 0]));
         $this->test_insert();
-    }
-
-    public function test_get() {
-        $data = $this->user_model->get();
-        print_r($data);
     }
 
     public function test_insert() {
@@ -54,12 +49,22 @@ class User extends CI_Controller {
         $email = $this->input->post('email');
 
 
-        $result = $this->user_model->insert([
-            'fbid' => $fbid,
-            'first_name' => $first_name,
-            'last_name' => $last_name,
-            'email' => $email
+        $result = $this->users_model->insert([
+            'usersFBID' => $fbid,
+            'usersFIRST_NAME' => $first_name,
+            'usersLAST_NAME' => $last_name,
+            'usersEMAIL' => $email,
+            'usersUSERTYPE' => "private"
         ]);
+    }
+
+    public function update() {
+        $mobileNumber = $this->input->post('mobilenumber');
+        $telephoneNumber = $this->input->post('telephonenumber');
+        
+        print_r($mobileNumber);
+        print_r($telephoneNumber);
+        die('not yet ready');
     }
 
 }
