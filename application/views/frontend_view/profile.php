@@ -21,8 +21,8 @@
                 <div id="test" >test filed</div>
                 <div id="test1">test filed1</div>
 
-
-                <form>
+                <!--action link to the page-->
+                <form action="/user/update" method="post" class="updateUserForm">
                     <div class="row">
 
                         <!-- mobile number -->
@@ -142,35 +142,59 @@
 <script type="text/javascript">
     function updateUser() {
 
-        var usertype = document.getElementById("test").value;
-        console.log(usertype);
-        if (usertype === "isAgent") {
+        $('form.updateUserForm').one('submit', function () {
+
+            var that = $(this),
+                    url = that.attr('action'),
+                    method = that.attr('method'),
+                    data = {};
+
+            that.find('[name]').each(function (index, value) {
+                var that = $(this),
+                    name = that.attr('name'),
+                    value = that.val();
+                    
+                    data[name] = value;
+            });
+
+            console.log(data);
             
-            console.log(document.getElementById("mobileNumber").value);
-            console.log(document.getElementById("telephoneNumber").value);
-//            var postData = {
-//                "mobilenumber": document.getElementById("mobileNumber").value,
-//                "telephonenumber": document.getElementById("telephoneNumber").value
-//            };
-//            var url = "/user/update";
-//            $.post(url, postData, function (o) {
-//                if (o.result == 1) {
-//                    alert('data saved');
-//                } else {
-//                }
-//            },
-//                    'json'
-//                    );
-        } else if (usertype === "isNotAgent") {
-            document.getElementById("test1").innerHTML = "btn clicked isNotAgent";
-            
-            console.log(document.getElementById("mobileNumber").value);
-            console.log(document.getElementById("telephoneNumber").value);
-        } else {
-            document.getElementById("test1").innerHTML = "btn clicked isAgent";
-            
-            console.log(document.getElementById("mobileNumber").value);
-            console.log(document.getElementById("telephoneNumber").value);
-        }
+            $.ajax({
+                
+            })
+
+            return false;
+        });
+//
+//        var usertype = document.getElementById("test").value;
+//        console.log(usertype);
+//        if (usertype === "isAgent") {
+//
+//            console.log(document.getElementById("mobileNumber").value);
+//            console.log(document.getElementById("telephoneNumber").value);
+////            var postData = {
+////                "mobilenumber": document.getElementById("mobileNumber").value,
+////                "telephonenumber": document.getElementById("telephoneNumber").value
+////            };
+////            var url = "/user/update";
+////            $.post(url, postData, function (o) {
+////                if (o.result == 1) {
+////                    alert('data saved');
+////                } else {
+////                }
+////            },
+////                    'json'
+////                    );
+//        } else if (usertype === "isNotAgent") {
+//            document.getElementById("test1").innerHTML = "btn clicked isNotAgent";
+//
+//            console.log(document.getElementById("mobileNumber").value);
+//            console.log(document.getElementById("telephoneNumber").value);
+//        } else {
+//            document.getElementById("test1").innerHTML = "btn clicked isAgent";
+//
+//            console.log(document.getElementById("mobileNumber").value);
+//            console.log(document.getElementById("telephoneNumber").value);
+//        }
     }
 </script>
