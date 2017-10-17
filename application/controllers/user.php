@@ -87,10 +87,9 @@ class User extends CI_Controller {
             print_r($resultAgency);
             print_r($resultUser);
         } else {
-            print_r($userType);
 
             $resultUser = $this->users_model->update([
-                'usersUSERTYPE' => $userType,
+                'usersUSERTYPE' => "private",
                 'usersMOBILENUMBER' => $mobileNumber,
                 'usersTELEPHONENUMBER' => $telephoneNumber
             ]);
