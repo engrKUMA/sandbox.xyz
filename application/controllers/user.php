@@ -5,6 +5,7 @@ class User extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('users_model');
+        $this->load->model('agency_model');
     }
 
     public function login() {
@@ -59,21 +60,44 @@ class User extends CI_Controller {
     }
 
     public function update() {
+        $userType = $this->input->post('userType');
         $mobileNumber = $this->input->post('mobileNumber');
         $telephoneNumber = $this->input->post('telephoneNumber');
+        $agencyName = $this->input->post('agencyName');
+        $agencyWebsite = $this->input->post('agencyWebsite');
+        $agencyCity = $this->input->post('agencyCity');
+        $agencyAddress = $this->input->post('agencyAddress');
 
 
-        if($mobileNumber != null && $telephoneNumber != null){
-            print_r($mobileNumber);
-            print_r($telephoneNumber);
-            die('if statement');
+        if ($userType === "agent") {
+            print_r($userType);
+
+            $resultAgency = $this->agency_model->insertAgency([
+                'agencyName' => $agencyName,
+                'agencyWebsite' => $agencyWebsite,
+                'agencyCity' => $agencyCity,
+                'agencyAddress' => $agencyAddress
+            ]);
+            $resultUser = $this->users_model->update([
+                'usersUSERTYPE' => $userType,
+                'usersMOBILENUMBER' => $mobileNumber,
+                'usersTELEPHONENUMBER' => $telephoneNumber
+            ]);
+
+            print_r($resultAgency);
+            print_r($resultUser);
         } else {
-            print_r($mobileNumber);
-            print_r($telephoneNumber);
-            die('else statement');
+            print_r($userType);
+
+            $resultUser = $this->users_model->update([
+                'usersUSERTYPE' => $userType,
+                'usersMOBILENUMBER' => $mobileNumber,
+                'usersTELEPHONENUMBER' => $telephoneNumber
+            ]);
+            print_r($resultUser);
         }
-        
-        die('not yet ready');
+
+        die('==not yet ready');
     }
 
 }

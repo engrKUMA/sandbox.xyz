@@ -33,7 +33,7 @@ class Users_model extends CI_Model {
 //        $userType = $this->db->get_where('users', ['fbid' => $FBID])->row()->type;
 //        $data = $rs->result_array();
 //        $userType = ($data[0]['type']);
-        
+
         return $this->db->get_where('users', ['usersEMAIL' => $usersEMAIL])->row()->usersUSERTYPE;
     }
 
@@ -46,6 +46,14 @@ class Users_model extends CI_Model {
 //        $userType = ($data[0]['type']);
 
         return $this->db->get_where('users', ['usersEMAIL' => $usersEMAIL])->row();
+    }
+
+    public function update($data) {
+        $userEmail = $this->session->userdata('usersEMAIL');
+
+        $this->db->set($data);
+        $this->db->where("usersEMAIL", $userEmail);
+        $this->db->update("users", $data);
     }
 
 }

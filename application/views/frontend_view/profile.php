@@ -17,12 +17,13 @@
         <div class="row card">
             <div class="card-content">
                 <h3 class="dashboard-header" >Edit Profile</h3>
-                <p>Make sure your profile is updated so that our users can contact you easily.</p>                
-                <div id="test" >test filed</div>
-                <div id="test1">test filed1</div>
+                <p>Make sure your profile is updated so that our users can contact you easily.</p>
 
                 <!--action link to the page-->
                 <form action="/user/update" method="post" class="updateUserForm">
+
+                    <div id="userType" name="userType">Private user</div>
+
                     <div class="row">
 
                         <!-- mobile number -->
@@ -49,20 +50,20 @@
 
                             <!-- website -->
                             <div class="input-field col l6 m6 s12">
-                                <input id="website" type="text" name="website" />
-                                <label for="website">Agency Website</label>
+                                <input id="agencyWebsite" type="text" name="agencyWebsite" />
+                                <label for="agencyWebsite">Agency Website</label>
                             </div>
 
                             <!-- agency city -->
                             <div class="input-field col l6 m6 s12">
-                                <input id="city" type="text" name="city" />
-                                <label for="city">Agency City*</label>
+                                <input id="agencyCity" type="text" name="agencyCity" />
+                                <label for="agencyCity">Agency City*</label>
                             </div>
 
                             <!-- agency Address -->
                             <div class="input-field col l6 m6 s12">
-                                <input id="address" type="text" name="address" />
-                                <label for="address">Agency Address*</label>
+                                <input id="agencyAddress" type="text" name="agencyAddress" />
+                                <label for="agencyAddress">Agency Address*</label>
                             </div>
 
                             <p id="privateBtn">Are you a Private User? <a onclick="hideAgentForm()">Change Account</a></p>
@@ -122,8 +123,9 @@
 <script type="text/javascript">
     function showAgentForm() {
 
-        document.getElementById("test").innerHTML = "isAgent";
-        document.getElementById("test").value = "isAgent";
+        document.getElementById("userType").innerHTML = "Agent";
+        document.getElementById("userType").value = "agent";
+
         console.log("btn pressed");
 
         $("#agentForm").show();
@@ -131,9 +133,11 @@
     }
     function hideAgentForm() {
 
-        document.getElementById("test").innerHTML = "isNotAgent";
-        document.getElementById("test").value = "isNotAgent";
+        document.getElementById("userType").innerHTML = "Private";
+        document.getElementById("userType").value = "private";
+
         console.log("btn pressed");
+
         $("#agentForm").hide();
         $("#agentBtn").show();
     }
@@ -151,24 +155,22 @@
 
             that.find('[name]').each(function (index, value) {
                 var that = $(this),
-                    name = that.attr('name'),
-                    value = that.val();
-                    
-                    data[name] = value;
+                        name = that.attr('name'),
+                        value = that.val();
+
+                data[name] = value;
             });
 
             console.log(data);
-            
+
             $.ajax({
-                url : url,
-                type : type,
-                data : data,
-                success : function(response){
+                url: url,
+                type: type,
+                data: data,
+                success: function (response) {
                     console.log(response);
                 }
-
-                
-            })
+            });
 
             return false;
         });
