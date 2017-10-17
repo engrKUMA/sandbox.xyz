@@ -146,7 +146,7 @@
 
             var that = $(this),
                     url = that.attr('action'),
-                    method = that.attr('method'),
+                    type = that.attr('method'),
                     data = {};
 
             that.find('[name]').each(function (index, value) {
@@ -160,6 +160,13 @@
             console.log(data);
             
             $.ajax({
+                url : url,
+                type : type,
+                data : data,
+                success : function(response){
+                    console.log(response);
+                }
+
                 
             })
 

@@ -59,11 +59,20 @@ class User extends CI_Controller {
     }
 
     public function update() {
-        $mobileNumber = $this->input->post('mobilenumber');
-        $telephoneNumber = $this->input->post('telephonenumber');
+        $mobileNumber = $this->input->post('mobileNumber');
+        $telephoneNumber = $this->input->post('telephoneNumber');
+
+
+        if($mobileNumber != null && $telephoneNumber != null){
+            print_r($mobileNumber);
+            print_r($telephoneNumber);
+            die('if statement');
+        } else {
+            print_r($mobileNumber);
+            print_r($telephoneNumber);
+            die('else statement');
+        }
         
-        print_r($mobileNumber);
-        print_r($telephoneNumber);
         die('not yet ready');
     }
 
