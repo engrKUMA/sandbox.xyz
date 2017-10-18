@@ -4,7 +4,9 @@ class Account extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('users_model');
+        $this->load->model('user_model');
+        $this->load->model('agency_model');
+        
         $this->load->library('session');
 
         // Load library and url helper
@@ -40,11 +42,12 @@ class Account extends CI_Controller {
             'title' => 'the userdash Page',
             'heading' => 'Welcome to the USERDASH Page',
             'message' => 'This is a test MSG for USERDASH',
-            'fbid' => $data['usersFBID'],
-            'first_name' => $data['usersFIRST_NAME'],
-            'last_name' => $data['usersLAST_NAME'],
-            'email' => $data['usersEMAIL'],
-            'usertype' => $data['usersUSERTYPE'],
+            'userFBID' => $data['userFBID'],
+            'userFirstName' => $data['userFirstName'],
+            'userLastName' => $data['userLastName'],
+            'userEmail' => $data['userEmail'],
+            'userType' => $data['userType'],
+            'userPicture' => $data['userPicture']
         );
 
         $this->load->view('frontend_view/includes/header');
@@ -64,11 +67,12 @@ class Account extends CI_Controller {
             'title' => 'the userdash Page',
             'heading' => 'Welcome to the USERDASH Page',
             'message' => 'This is a test MSG for USERDASH',
-            'fbid' => $data['usersFBID'],
-            'first_name' => $data['usersFIRST_NAME'],
-            'last_name' => $data['usersLAST_NAME'],
-            'email' => $data['usersEMAIL'],
-            'usertype' => $data['usersUSERTYPE'],
+            'userFBID' => $data['userFBID'],
+            'userFirstName' => $data['userFirstName'],
+            'userLastName' => $data['userLastName'],
+            'userEmail' => $data['userEmail'],
+            'userType' => $data['userType'],
+            'userPicture' => $data['userPicture']
         );
 
         $this->load->view('frontend_view/includes/header');
@@ -78,12 +82,12 @@ class Account extends CI_Controller {
 
     //function to check the user type of the logged in user in the database and returns user type
     function checkUserType() {
-        return $this->users_model->checkUserType();
+        return $this->user_model->checkUserType();
     }
 
     //function to build get user info from DB
     function buildUserInfo() {
-        return $this->users_model->buildUserInfo();
+        return $this->user_model->buildUserInfo();
     }
 
     //    logout user and clear session data

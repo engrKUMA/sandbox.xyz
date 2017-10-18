@@ -22,6 +22,12 @@
         <!-- slick css -->
         <link href="<?= base_url('libs/slick/slick.css') ?>" rel="stylesheet">
         <link href="<?= base_url('libs/slick/slick-theme.css') ?>" rel="stylesheet">
+
+
+        <script type="text/javascript">
+            var testdata = 'test';
+            console.log(testdata);
+        </script>
     </head>
     <body>
         <!-- navbar -->

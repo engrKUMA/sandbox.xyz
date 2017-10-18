@@ -3,8 +3,8 @@
         <!-- start: dashboard Side nav -->
         <ul class="collection sticky">
             <li class="collection-item center">
-                <img src="img/sample/sample.jpg" class="circle center" width="80px" height="80px">
-                <p><?= $first_name; ?> <?= $last_name; ?><br> <?= $usertype; ?></p>
+                <img src=<?= $userPicture; ?> class="circle center" width="80px" height="80px">
+                <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
             </li>
             <a id="login-register-btn" href="profile.php" class="center collection-item collection-active waves-effect waves-light">Edit Profile</a>
             <a id="offer-property-btn" href="properties.php" class="center collection-item waves-effect waves-light">Properties</a>
@@ -56,8 +56,8 @@
 
                             <!-- agency city -->
                             <div class="input-field col l6 m6 s12">
-                                <input id="agencyCity" type="text" name="agencyCity" />
-                                <label for="agencyCity">Agency City*</label>
+                                <input id="agencyNumber" type="text" name="agencyNumber" />
+                                <label for="agencyNumber">Agency Number*</label>
                             </div>
 
                             <!-- agency Address -->

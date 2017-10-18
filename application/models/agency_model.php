@@ -9,8 +9,7 @@ class Agency_model extends CI_Model {
       ['fbid' => '123'], ['fname' => 'aaa'], ['lname' => 'sss'], ['email' => 'ddd']);
      */
     public function insertAgency($data) {
-        $this->db->insert('agency', $data);
-        return $this->db->insert_id();
+        $this->db->insert('agencyTable', $data);
     }
 
 }

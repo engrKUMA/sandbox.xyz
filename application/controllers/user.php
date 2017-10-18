@@ -4,58 +4,65 @@ class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('users_model');
+        $this->load->model('user_model');
         $this->load->model('agency_model');
     }
 
     public function login() {
 
-        $fbid = $this->input->post('fbid');
-        $first_name = $this->input->post('first_name');
-        $last_name = $this->input->post('last_name');
-        $email = $this->input->post('email');
+        $userFBID = $this->input->post('userFBID');
+        $userFirstName = $this->input->post('userFirstName');
+        $userLastName = $this->input->post('userLastName');
+        $userEmail = $this->input->post('userEmail');
+        $userPicture = $this->input->post('userPicture');
+
 
         //setting up session data
         $this->session->set_userdata(array(
-            'usersFBID' => $fbid,
-            'usersFIRST_NAME' => $first_name,
-            'usersLAST_NAME' => $last_name,
-            'usersEMAIL' => $email
+            'userFBID' => $userFBID,
+            'userFirstName' => $userFirstName,
+            'userLastName' => $userLastName,
+            'userEmail' => $userEmail,
+            'userPicture' => $userPicture
         ));
 
-        $result = $this->users_model->get([
-            'usersFBID' => $fbid,
-            'usersFIRST_NAME' => $first_name,
-            'usersLAST_NAME' => $last_name,
-            'usersEMAIL' => $email
+        $result = $this->user_model->get([
+            'userFBID' => $userFBID,
+            'userFirstName' => $userFirstName,
+            'userLastName' => $userLastName,
+            'userEmail' => $userEmail,
+            'userPicture' => $userPicture
         ]);
 
         $this->output->set_content_type('application_json');
 
         if ($result) {
-            $this->session->set_userdata(['usersEMAIL' => $result[0]['usersEMAIL']]);
+            $this->session->set_userdata(['userEmail' => $result[0]['userEmail']]);
             $this->output->set_output(json_encode(['result' => 1]));
 
             return FALSE;
         }
         $this->output->set_output(json_encode(['result' => 0]));
-        $this->test_insert();
+        $this->insert();
     }
 
-    public function test_insert() {
+    public function insert() {
 
-        $fbid = $this->input->post('fbid');
-        $first_name = $this->input->post('first_name');
-        $last_name = $this->input->post('last_name');
-        $email = $this->input->post('email');
+        $userFBID = $this->input->post('userFBID');
+        $userFirstName = $this->input->post('userFirstName');
+        $userLastName = $this->input->post('userLastName');
+        $userEmail = $this->input->post('userEmail');
+        $userPicture = $this->input->post('userPicture');
 
 
-        $result = $this->users_model->insert([
-            'usersFBID' => $fbid,
-            'usersFIRST_NAME' => $first_name,
-            'usersLAST_NAME' => $last_name,
-            'usersEMAIL' => $email,
-            'usersUSERTYPE' => "private"
+
+        $result = $this->user_model->insert([
+            'userFBID' => $userFBID,
+            'userFirstName' => $userFirstName,
+            'userLastName' => $userLastName,
+            'userEmail' => $userEmail,
+            'userPicture' => $userPicture,
+            'userType' => "private"
         ]);
     }
 
@@ -65,7 +72,7 @@ class User extends CI_Controller {
         $telephoneNumber = $this->input->post('telephoneNumber');
         $agencyName = $this->input->post('agencyName');
         $agencyWebsite = $this->input->post('agencyWebsite');
-        $agencyCity = $this->input->post('agencyCity');
+        $agencyNumber = $this->input->post('agencyNumber');
         $agencyAddress = $this->input->post('agencyAddress');
 
 
@@ -75,23 +82,23 @@ class User extends CI_Controller {
             $resultAgency = $this->agency_model->insertAgency([
                 'agencyName' => $agencyName,
                 'agencyWebsite' => $agencyWebsite,
-                'agencyCity' => $agencyCity,
+                'agencyNumber' => $agencyNumber,
                 'agencyAddress' => $agencyAddress
             ]);
-            $resultUser = $this->users_model->update([
-                'usersUSERTYPE' => $userType,
-                'usersMOBILENUMBER' => $mobileNumber,
-                'usersTELEPHONENUMBER' => $telephoneNumber
+            $resultUser = $this->user_model->update([
+                'userType' => $userType,
+                'userMobileNumber' => $mobileNumber,
+                'userTelephoneNumber' => $telephoneNumber
             ]);
 
             print_r($resultAgency);
             print_r($resultUser);
         } else {
 
-            $resultUser = $this->users_model->update([
-                'usersUSERTYPE' => "private",
-                'usersMOBILENUMBER' => $mobileNumber,
-                'usersTELEPHONENUMBER' => $telephoneNumber
+            $resultUser = $this->user_model->update([
+                'userType' => "private",
+                'userMobileNumber' => $mobileNumber,
+                'userTelephoneNumber' => $telephoneNumber
             ]);
             print_r($resultUser);
         }

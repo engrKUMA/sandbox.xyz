@@ -1,3 +1,6 @@
+<script type="text/javascript">
+</script>
+
 <!-- nav tag represents the nav menu -->
 <!-- the side nav id represents the side nav menu -->
 
@@ -11,7 +14,7 @@
             <a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only right"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></a>
 
             <!-- nav bar menu -->
-            <a href="<?= base_url('');?>" class="brand-logo"><img src="" width="220px" style="margin-top: 0px">HAPPY Logo</a>
+            <a href="<?= base_url(''); ?>" class="brand-logo"><img src="" width="220px" style="margin-top: 0px">HAPPY Logo</a>
 
             <ul class="right hide-on-med-and-down">
                 <li>
@@ -27,7 +30,7 @@
                 <li><a href="search_results.php">Ask</a></li>
                 <li><a href="search_results.php">Post</a></li>
                 <li>
-                    <a id="login-register-btn" onclick="toLogin();" class="waves-effect waves-light center"><i class="fa fa-user" aria-hidden="true"></i> Login / Register</a>
+                    <a name="login" id="login-register-btn" onclick="triggerLogin();" class="waves-effect waves-light center"><i class="fa fa-user" aria-hidden="true"></i> Login W/ FB</a>
                 </li>
             </ul>
         </div>
@@ -172,9 +175,110 @@
     }
 
 //change something using sessions and codeigniter calls
-//    if(<?= $this->session->userdata('usersFBID');?> != null){
+//    if(<?= $this->session->userdata('usersFBID'); ?> != null){
 //       document.getElementById("login-register-btn").innerHTML = "test change"; 
 //    } else{
 //        toLogin();
 //    }
+</script>
+
+
+
+<script src="<?= base_url('assets/js/jquery-3.2.1.min.js'); ?>"></script>
+
+<script>
+    // Initiate Facebook JS SDK
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: false, // disable xfbml improves the page load time
+            version: 'v2.10',
+            status: true // Check for user login status right away
+        });
+
+        FB.getLoginStatus(function (response) {
+            console.log('getLoginStatus', response);
+            // loginCheck(response);
+        });
+    };
+
+    // Check login status
+    function statusCheck(response) {
+        console.log('statusCheck', response.status);
+        if (response.status === 'connected')
+        {
+            //build user info then login..
+            buildInfo();
+
+        } else if (response.status === 'not_authorized')
+        {
+            // User logged into facebook, but not to our app.
+        } else {
+            // User not logged into Facebook.
+        }
+    }
+
+    // Get login status
+    function loginCheck()
+    {
+        FB.getLoginStatus(function (response) {
+            console.log('loginCheck', response);
+            statusCheck(response);
+        });
+    }
+
+    function buildInfo() {
+        FB.api('/me', 'GET', {fields: 'id,first_name,last_name,email, picture'}, function (response) {
+
+            var url = "/user/login",
+                    type = "post",
+                    data = {
+                        "userFBID": response.id,
+                        "userFirstName": response.first_name,
+                        "userLastName": response.last_name,
+                        "userEmail": response.email,
+                        "userPicture": response.picture.data.url
+                    };
+
+            console.log(url);
+            console.log(type);
+            console.log(data);
+
+
+            $.ajax({
+                url: url,
+                type: type,
+                data: data,
+                success: function (response) {
+                    if (response == 1) {
+                        window.location.href = "<?= base_url('account') ?>";
+                        alert('welcome back user');
+                    } else {
+                        window.location.href = "<?= base_url('account') ?>";
+                        alert('welcome new user');
+                    }
+                }
+            });
+        });
+    }
+
+    function triggerLogin() {
+        // Trigger login
+        FB.login(function () {
+            loginCheck();
+        }, {scope: '<?php echo implode(",", $this->config->item('facebook_permissions')); ?>'});
+    }
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
 </script>
