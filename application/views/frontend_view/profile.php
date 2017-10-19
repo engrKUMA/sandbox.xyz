@@ -4,7 +4,7 @@
         <ul class="collection sticky">
             <li class="collection-item center">
                 <img src=<?= $userPicture; ?> class="circle center" width="80px" height="80px">
-                <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
+                     <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
             </li>
             <a id="login-register-btn" href="profile.php" class="center collection-item collection-active waves-effect waves-light">Edit Profile</a>
             <a id="offer-property-btn" href="properties.php" class="center collection-item waves-effect waves-light">Properties</a>

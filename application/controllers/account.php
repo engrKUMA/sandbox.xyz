@@ -6,7 +6,7 @@ class Account extends CI_Controller {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('agency_model');
-        
+
         $this->load->library('session');
 
         // Load library and url helper

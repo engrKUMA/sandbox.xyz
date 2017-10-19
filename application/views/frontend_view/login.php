@@ -1,6 +1,6 @@
 <script src="<?= base_url('assets/js/jquery-3.2.1.min.js'); ?>"></script>
 
-<script>
+<script type="text/javascript" >
     // Initiate Facebook JS SDK
     window.fbAsyncInit = function () {
         FB.init({
@@ -20,13 +20,11 @@
     // Check login status
     function statusCheck(response) {
         console.log('statusCheck', response.status);
-        if (response.status === 'connected')
-        {
+        if (response.status === 'connected') {
             //build user info then login..
             buildInfo();
 
-        } else if (response.status === 'not_authorized')
-        {
+        } else if (response.status === 'not_authorized') {
             // User logged into facebook, but not to our app.
         } else {
             // User not logged into Facebook.
@@ -34,8 +32,7 @@
     }
 
     // Get login status
-    function loginCheck()
-    {
+    function loginCheck() {
         FB.getLoginStatus(function (response) {
             console.log('loginCheck', response);
             statusCheck(response);

@@ -1,18 +1,30 @@
 <?php
 
 class User_model extends CI_Model {
+    /*
+      public function get($userFBID = null) {
 
-    public function get($userFBID = null) {
+      if ($userFBID === null) {
+      $query = $this->db->get('userTable');
+      } elseif (is_array($userFBID)) {
+      $query = $this->db->get_where('userTable', $userFBID);
+      } else {
+      $query = $this->db->get_where('userTable', ['userFBID' => $userFBID]);
+      }
 
-        if ($userFBID === null) {
-            $query = $this->db->get('userTable');
-        } elseif (is_array($userFBID)) {
-            $query = $this->db->get_where('userTable', $userFBID);
+      return $query->result_array();
+      }
+     */
+
+    public function get($userFBID) {
+
+        $query = $this->db->get_where('userTable', $userFBID);
+        if ($query->num_rows() > 0) {
+            return $query->result_array();
         } else {
-            $query = $this->db->get_where('userTable', ['userFBID' => $userFBID]);
+            print_r('false');
+            return false;
         }
-
-        return $query->result_array();
     }
 
     /**
@@ -24,6 +36,14 @@ class User_model extends CI_Model {
     public function insert($data) {
         $this->db->insert('userTable', $data);
         return $this->db->insert_id();
+    }
+
+    public function updateUserData($data) {
+        $userFBID = $this->session->userdata('userFBID');
+
+        $this->db->set($data);
+        $this->db->where("userFBID", $userFBID);
+        $this->db->update("userTable", $data);
     }
 
     public function checkUserType() {

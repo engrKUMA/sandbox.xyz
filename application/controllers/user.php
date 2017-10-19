@@ -40,8 +40,11 @@ class User extends CI_Controller {
             $this->session->set_userdata(['userEmail' => $result[0]['userEmail']]);
             $this->output->set_output(json_encode(['result' => 1]));
 
+            $this->updateUserData();
+
             return FALSE;
         }
+
         $this->output->set_output(json_encode(['result' => 0]));
         $this->insert();
     }
@@ -54,8 +57,6 @@ class User extends CI_Controller {
         $userEmail = $this->input->post('userEmail');
         $userPicture = $this->input->post('userPicture');
 
-
-
         $result = $this->user_model->insert([
             'userFBID' => $userFBID,
             'userFirstName' => $userFirstName,
@@ -63,6 +64,23 @@ class User extends CI_Controller {
             'userEmail' => $userEmail,
             'userPicture' => $userPicture,
             'userType' => "private"
+        ]);
+    }
+
+    public function updateUserData() {
+
+        $userFBID = $this->input->post('userFBID');
+        $userFirstName = $this->input->post('userFirstName');
+        $userLastName = $this->input->post('userLastName');
+        $userEmail = $this->input->post('userEmail');
+        $userPicture = $this->input->post('userPicture');
+
+        $result = $this->user_model->updateUserData([
+            'userFBID' => $userFBID,
+            'userFirstName' => $userFirstName,
+            'userLastName' => $userLastName,
+            'userEmail' => $userEmail,
+            'userPicture' => $userPicture
         ]);
     }
 
