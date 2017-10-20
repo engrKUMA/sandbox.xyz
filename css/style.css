@@ -1,0 +1,143 @@
+body {
+    font-family: 'Raleway', sans-serif;
+}
+.main{
+    width: 1015px;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+}
+#form_head{
+    text-align: center;
+    background-color: #FEFFED;
+    height: 66px;
+    margin: 0 0 -29px 0;
+    padding-top: 35px;
+    border-radius: 8px 8px 0 0;
+    color: rgb(97, 94, 94);
+}
+#content {
+    position: absolute;
+    width: 481px;
+    height: 782px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-top: -40px;
+    margin-left: -60px;
+}
+#content_result{
+    position: relative;
+    width: 522px;
+    height: auto;
+    border: 2px solid gray;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    margin-left: 559px;
+    margin-top: -645px;
+}
+#form_input{
+    margin-left: 50px;
+    margin-top: 36px;
+}
+label{
+    margin-right: 6px;
+    font-weight: bold;
+}
+
+#form_button{
+    padding: 0 21px 15px 15px;
+    position: absolute;
+    bottom: 0px;
+    width: 445px;
+    background-color: #FEFFED;
+    border-radius: 0px 0px 8px 8px;
+    border-top: 1px solid #9A9A9A;
+}
+.submit{
+    font-size: 16px;
+    background: linear-gradient(#ffbc00 5%, #ffdd7f 100%);
+    border: 1px solid #e5a900;
+    color: #4E4D4B;
+    font-weight: bold;
+    cursor: pointer;
+    width: 300px;
+    border-radius: 5px;
+    padding: 10px 0;
+    outline: none;
+    margin-top: 20px;
+    margin-left: 15%;
+}
+.submit:hover{
+    background: linear-gradient(#ffdd7f 5%, #ffbc00 100%);
+}
+.label_output{
+    color:#4A85AB;
+    margin-left: 10px;
+}
+.dropdown_box{
+    height:40px;
+    width:240px;
+    border-radius:3px;
+    background-color:#FEFFED;
+}
+#result_id{
+    text-align: center;
+    background-color: #FCD6F4;
+    height: 47px;
+    margin: 0 0 -29px 0;
+    padding-top: 12px;
+    border-radius: 8px 8px 0 0;
+    color: rgb(97, 94, 94);
+}
+#result_show{
+    margin-top: 35px;
+    margin-left: 45px;
+}
+.input_box{
+    height:40px;
+    width:240px;
+    padding:20px;
+    border-radius:3px;
+    background-color:#FEFFED;
+}
+#checkbox_list{
+    margin-left: 143px;
+    margin-top: -36px;
+}
+ul{
+    position: absolute;
+    list-style: none;
+}
+.qual_output{
+    margin-left: 176px;
+    margin-top: -17px;
+}
+#radio_list{
+    margin-left: 143px;
+    margin-top: -18px;
+}
+.textarea_input{
+    margin-left: 145px;
+    margin-top: -16px;
+}
+.upload{
+    margin-left: 144px;
+    margin-top: -19px;  
+}
+textarea{
+    background-color:#FEFFED;     
+}
+.address_div{
+    width: 50px;
+    height:auto;
+}
+pre.address_output{
+    font-family: 'Raleway', sans-serif;
+    margin-top: -19px;
+    margin-left: 217px;
+    width:247px;
+    height:auto;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
