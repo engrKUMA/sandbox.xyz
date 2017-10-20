@@ -18,12 +18,16 @@ class User_model extends CI_Model {
 
     public function get($userFBID) {
 
-        $query = $this->db->get_where('userTable', $userFBID);
-        if ($query->num_rows() > 0) {
+        $query = null; //clear query
+        $query = $this->db->get_where('usertable', $userFBID);
+        $count = $query->num_rows();
+
+        if ($count === 0) {
+//            print_r('insert new user data');
             return $query->result_array();
         } else {
-            print_r('false');
-            return false;
+//            print_r('update user data');
+            return $query->result_array();
         }
     }
 
@@ -70,6 +74,25 @@ class User_model extends CI_Model {
 
     public function update($data) {
         $userFBID = $this->session->userdata('userFBID');
+
+        $this->db->set($data);
+        $this->db->where("userFBID", $userFBID);
+        $this->db->update("userTable", $data);
+    }
+
+    public function getAllUser() {
+        return $this->db->get("usertable");
+    }
+    
+    public function updateContactInfo($data){
+        $userFBID = $this->session->userdata('userFBID');
+
+        $this->db->set($data);
+        $this->db->where("userFBID", $userFBID);
+        $this->db->update("userTable", $data);
+    }
+    public function sendChangeUserType($data){
+        $userFBID = $data['userFBID'];
 
         $this->db->set($data);
         $this->db->where("userFBID", $userFBID);

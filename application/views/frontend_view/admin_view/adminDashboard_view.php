@@ -5,46 +5,29 @@
             <li class="collection-item center">
                 <img src=<?= $userPicture; ?> class="circle center" width="80px" height="80px">
                      <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
-            </li>
-            <a id="login-register-btn" href="profile.php" class="center collection-item collection-active waves-effect waves-light">Edit Profile</a>
-            <a id="offer-property-btn" href="properties.php" class="center collection-item waves-effect waves-light">Properties</a>
-            <a id="offer-property-btn" href="messages.php" class="center collection-item waves-effect waves-light">Messages</a>
-            <a id="offer-property-btn" onclick="toLogout();" class="center collection-item waves-effect waves-light">Logout</a>
+
+                <a id="offer-property-btn" onclick="toRegisterAgency();" class="center collection-item waves-effect waves-light">Register Agency</a>
+                <a id="offer-property-btn" onclick="toLogout();" class="center collection-item waves-effect waves-light">Logout</a>
         </ul>
         <!-- end:  dashboard Side nav -->
     </div>
     <div class="col l8 m6 s8">
         <div class="row card">
             <div class="card-content">
-                <h3 class="dashboard-header" >Edit Profile</h3>
-                <p>Make sure your profile is updated so that our users can contact you easily.</p>
+                <h3 class="dashboard-header" >Admin Dashboard</h3>
+                <p>Make changes to site</p>
 
-                <!--action link to the page-->
-                <form action="/user/updateContactInfo" method="post" class="updateUserForm">
-                    <div class="row">
-                        <!-- mobile number -->
-                        <div class="input-field col l6 m6 s12">
-                            <input id="mobileNumber" type="number" name="mobileNumber" />
-                            <label for="mobileNumber">Mobile Number*</label>
-                        </div>
-                        <!-- telephone Number -->
-                        <div class="input-field col l6 m6 s12">
-                            <input id="telephoneNumber" type="number" name="telephoneNumber" />
-                            <label for="telephoneNumber">Telephone Number</label>
-                        </div>
-
-                        <p id="userTypeChangeRequest">Request for user Type Change? <a onclick="sendChangeRequest();">Send Request</a></p>
-                        
-                        <div class="center">
-                            <button onclick="updateUser();" class="btn waves-light waves-effect circle-btn">Save Changes</button>
-                        </div>
-                    </div>
-                </form>
+                <button onclick="showUserRequest();">
+                    showUserRequest
+                </button>
+                <div></div>
+                <button onclick="postProperty();">
+                    Post Property
+                </button>
             </div>
-
         </div>
-    </div>
 </section>
+
 
 <script>
     // Initiate Facebook JS SDK
@@ -116,23 +99,21 @@
             return false;
         });
     }
-    
-    function sendChangeRequest(){
-        var url = "user/sendChangeUserType",
-                data = {
-                        "userFBID": <?= $this->session->userdata('userFBID'); ?>,
-                        "userChangeTypeRequest": "true"
-                    };
-        $.ajax({
-                url: url,
-                type: "post",
-                data: data,
-                success: function (response) {
-                    console.log(response);
-                    alert(response);
-                }
-            });
-            return false;
-        alert('for sending request');
+</script>
+
+<script type="text/javascript" >
+    function showUserRequest() {
+        //load controller
+        window.location.href = "/adminController/showUserRequest";
+    }
+    function showUserRequest() {
+
+        //load controller
+        window.location.href = "/adminController/showUserRequest";
+    }
+    function toRegisterAgency() {
+
+        //load controller
+        window.location.href = "/adminController/newAgencyForm";
     }
 </script>

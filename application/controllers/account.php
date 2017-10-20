@@ -9,6 +9,8 @@ class Account extends CI_Controller {
 
         $this->load->library('session');
 
+        $this->load->library('table');
+
         // Load library and url helper
         $this->load->library('facebook');
         $this->load->helper('url');
@@ -16,23 +18,20 @@ class Account extends CI_Controller {
 
     public function index() {
 
-        if ($this->checkUserType() == "private") {
-            $this->user_private();
+        
+        //controls which page to load
+        if ($this->checkUserType() == "admin") {
+            $this->userAdmin();
+        } else if ($this->checkUserType() == "client") {
+            $this->userClient();
         } else if ($this->checkUserType() == "agent") {
-            $this->user_agent();
+            $this->userAgent();
         } else {
-            $this->login();
+            $this->logout();
         }
     }
 
-    public function login() {
-
-        $this->load->view('frontend_view/includes/header');
-        $this->load->view('frontend_view/login');
-        $this->load->view('frontend_view/includes/footer');
-    }
-
-    public function user_private() {
+    public function userAdmin() {
 
         $userInfo = $this->buildUserInfo();
 
@@ -51,11 +50,35 @@ class Account extends CI_Controller {
         );
 
         $this->load->view('frontend_view/includes/header');
-        $this->load->view('frontend_view/profile', $thedata);
+        $this->load->view('frontend_view/admin_view/adminDashboard_view', $thedata);
         $this->load->view('frontend_view/includes/footer');
     }
 
-    public function user_agent() {
+    public function userClient() {
+        $userInfo = $this->buildUserInfo();
+
+        //converting sdtObject to json format
+        $data = json_decode(json_encode($userInfo), True);
+
+        //how to call an item in a json format
+        // $var['object key'] 
+        $thedata = array(
+            'title' => 'the userdash Page',
+            'heading' => 'Welcome to the USERDASH Page',
+            'message' => 'This is a test MSG for USERDASH',
+            'userFBID' => $data['userFBID'],
+            'userFirstName' => $data['userFirstName'],
+            'userLastName' => $data['userLastName'],
+            'userEmail' => $data['userEmail'],
+            'userType' => $data['userType'],
+            'userPicture' => $data['userPicture']
+        );
+
+        $this->load->view('frontend_view/includes/header');
+        $this->load->view('frontend_view/profile', $thedata);
+        $this->load->view('frontend_view/includes/footer');
+    }
+    public function userAgent() {
         $userInfo = $this->buildUserInfo();
 
         //converting sdtObject to json format

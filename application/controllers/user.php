@@ -16,7 +16,6 @@ class User extends CI_Controller {
         $userEmail = $this->input->post('userEmail');
         $userPicture = $this->input->post('userPicture');
 
-
         //setting up session data
         $this->session->set_userdata(array(
             'userFBID' => $userFBID,
@@ -27,25 +26,23 @@ class User extends CI_Controller {
         ));
 
         $result = $this->user_model->get([
-            'userFBID' => $userFBID,
-            'userFirstName' => $userFirstName,
-            'userLastName' => $userLastName,
-            'userEmail' => $userEmail,
-            'userPicture' => $userPicture
-        ]);
+            'userFBID' => $userFBID]);
 
         $this->output->set_content_type('application_json');
 
         if ($result) {
-            $this->session->set_userdata(['userEmail' => $result[0]['userEmail']]);
-            $this->output->set_output(json_encode(['result' => 1]));
+            $this->session->set_userdata(['userFBID' => $result[0]['userFBID']]);
+//            $this->output->set_output(json_encode(['result' => 1]));
+            $this->output->set_output("previous user");
 
             $this->updateUserData();
 
             return FALSE;
         }
 
-        $this->output->set_output(json_encode(['result' => 0]));
+//        $this->output->set_output(json_encode(['result' => 0]));
+        $this->output->set_output("new user");
+
         $this->insert();
     }
 
@@ -83,45 +80,28 @@ class User extends CI_Controller {
             'userPicture' => $userPicture
         ]);
     }
-
-    public function update() {
-        $userType = $this->input->post('userType');
+    
+    public function updateContactInfo(){
         $mobileNumber = $this->input->post('mobileNumber');
         $telephoneNumber = $this->input->post('telephoneNumber');
-        $agencyName = $this->input->post('agencyName');
-        $agencyWebsite = $this->input->post('agencyWebsite');
-        $agencyNumber = $this->input->post('agencyNumber');
-        $agencyAddress = $this->input->post('agencyAddress');
-
-
-        if ($userType === "agent") {
-            print_r($userType);
-
-            $resultAgency = $this->agency_model->insertAgency([
-                'agencyName' => $agencyName,
-                'agencyWebsite' => $agencyWebsite,
-                'agencyNumber' => $agencyNumber,
-                'agencyAddress' => $agencyAddress
-            ]);
-            $resultUser = $this->user_model->update([
-                'userType' => $userType,
-                'userMobileNumber' => $mobileNumber,
-                'userTelephoneNumber' => $telephoneNumber
-            ]);
-
-            print_r($resultAgency);
-            print_r($resultUser);
-        } else {
-
-            $resultUser = $this->user_model->update([
-                'userType' => "private",
-                'userMobileNumber' => $mobileNumber,
-                'userTelephoneNumber' => $telephoneNumber
-            ]);
-            print_r($resultUser);
-        }
-
-        die('==not yet ready');
+        
+        $result = $this->user_model->updateContactInfo([
+            'userTelephoneNumber' => $telephoneNumber,
+            'userMobileNumber' => $mobileNumber
+        ]);
+    }
+    
+    public function sendChangeUserType(){
+        
+        $userFBID = $this->session->userdata('userFBID');
+        $request = $this->input->post('userChangeTypeRequest');
+        
+        $result = $this->user_model->sendChangeUserType([
+            'userFBID' => $userFBID,
+            'userChangeTypeRequest' => $request
+        ]);
+        
+        return $this->output->set_output('request sent');
     }
 
 }

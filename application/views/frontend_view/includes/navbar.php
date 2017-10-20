@@ -182,10 +182,6 @@
 //    }
 </script>
 
-
-
-<script src="<?= base_url('assets/js/jquery-3.2.1.min.js'); ?>"></script>
-
 <script>
     // Initiate Facebook JS SDK
     window.fbAsyncInit = function () {
@@ -251,10 +247,12 @@
                 type: type,
                 data: data,
                 success: function (response) {
-                    if (response == 1) {
+                    if (response == "previous user") {
+                        console.log(response);
                         window.location.href = "<?= base_url('account') ?>";
                         alert('welcome back user');
                     } else {
+                        console.log(response);
                         window.location.href = "<?= base_url('account') ?>";
                         alert('welcome new user');
                     }
