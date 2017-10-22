@@ -1,3 +1,4 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <section class="row">
     <div class="col l2 m3 s4">
         <!-- start: dashboard Side nav -->
@@ -24,6 +25,11 @@
                 <button onclick="postProperty();">
                     Post Property
                 </button>
+                <div>
+                    <button name="btn_preview" id="btn_preview">
+                        test BTN
+                    </button>
+                </div>
             </div>
         </div>
 </section>
@@ -67,40 +73,7 @@
     }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<script type="text/javascript">
-    function updateUser() {
-
-        $('form.updateUserForm').one('submit', function () {
-
-            var that = $(this),
-                    url = that.attr('action'),
-                    type = that.attr('method'),
-                    data = {};
-
-            that.find('[name]').each(function (index, value) {
-                var that = $(this),
-                        name = that.attr('name'),
-                        value = that.val();
-
-                data[name] = value;
-            });
-
-            console.log(data);
-
-            $.ajax({
-                url: url,
-                type: type,
-                data: data,
-                success: function (response) {
-                    console.log(response);
-                }
-            });
-
-            return false;
-        });
-    }
-</script>
-
+<!--redirects--> 
 <script type="text/javascript" >
     function showUserRequest() {
         //load controller
@@ -116,4 +89,35 @@
         //load controller
         window.location.href = "/adminController/newAgencyForm";
     }
+</script>
+
+<script type="text/javascript">
+    $("#btn_preview").click(function () {
+        console.log('test btn pressed');
+        var name = $('#txtName').val();
+        var message = $('#txtMessageRequired').val();
+        var tag = $("<div></div>");
+        $(tag).attr("title", "Preview - Newsletter");
+        $.ajax({
+            type: "POST",
+            data: {message: message, name: name},
+            url: "<?= base_url('home/test'); ?>", //Important: base_url is defined in the header section
+            success: function (result) {
+                console.log(result);
+//                $(tag).dialog({
+//                    autoOpen: false,
+//                    show: {
+//                        effect: "blind",
+//                        duration: 1000
+//                    },
+//                    hide: {
+//                        effect: "explode",
+//                        duration: 1000
+//                    }
+//                });
+//                $(tag).dialog("option", "width", 670);
+//                $(tag).html(result).dialog().dialog('open');
+            }
+        });
+    });
 </script>

@@ -18,7 +18,7 @@ class Account extends CI_Controller {
 
     public function index() {
 
-        
+
         //controls which page to load
         if ($this->checkUserType() == "admin") {
             $this->userAdmin();
@@ -78,6 +78,7 @@ class Account extends CI_Controller {
         $this->load->view('frontend_view/profile', $thedata);
         $this->load->view('frontend_view/includes/footer');
     }
+
     public function userAgent() {
         $userInfo = $this->buildUserInfo();
 
