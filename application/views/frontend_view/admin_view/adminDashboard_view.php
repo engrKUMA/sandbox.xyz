@@ -8,6 +8,8 @@
                      <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
 
                 <a id="offer-property-btn" onclick="toRegisterAgency();" class="center collection-item waves-effect waves-light">Register Agency</a>
+                <a id="offer-property-btn" href="<?php echo base_url('home/test'); ?>" class="center collection-item waves-effect waves-light">test modal</a>
+                <a href="#" class=".openModal">view</a>
                 <a id="offer-property-btn" onclick="toLogout();" class="center collection-item waves-effect waves-light">Logout</a>
         </ul>
         <!-- end:  dashboard Side nav -->
@@ -26,13 +28,112 @@
                     Post Property
                 </button>
                 <div>
-                    <button name="btn_preview" id="btn_preview">
+                    <button name="category_modal" id="category_modal">
+                        test BTN
+                    </button>
+
+                    <button name="btnShowModal" id="btnShowModal">
                         test BTN
                     </button>
                 </div>
             </div>
         </div>
 </section>
+
+<div class="modal fade" id="selected_note" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal-dialog">
+    <div class="modal-content">
+        Random Content!
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">View Location Note</h4>
+        </div>
+        <div class="modal-body"></div>
+    </div>
+</div>
+
+<script>
+    $('#category_modal').on('show.bs.modal', function(e) {
+    var url = $(this).data('url');
+    alert(url);
+    jQuery.ajax({
+       url: url,
+       data:{data_id:$(this).attr('data_id')}, 
+       success: function(response)
+       {
+              alert(response);
+            jQuery('#categoryModal .modal-content').html(response);
+
+          }
+        });
+  });
+    </script>
+
+    <script type="text/javascript">
+        <script type="text/javascript">
+
+   $(document).ready(function ()
+   {
+
+      $("#btnShowModal").click(function (e)
+      {
+         ShowDialog();
+         e.preventDefault();
+      });
+
+      $("#btnClose").click(function (e)
+      {
+         HideDialog();
+         e.preventDefault();
+      });
+
+      $("#btnSubmit").click(function (e)
+      {
+         //submit logic
+         HideDialog();
+         e.preventDefault();
+      });
+
+   });
+
+   function ShowDialog()
+   {
+      $("#overlay").show();
+      $("#dialog").fadeIn(300);
+      $("#overlay").unbind("click");        
+   }
+
+   function HideDialog()
+   {
+      $("#overlay").hide();
+      $("#dialog").fadeOut(300);
+   } 
+
+</script>
+    </script>
+
+    <script type="text/javascript">
+ function notes_modal() {
+    $.ajax({
+        type: "POST",
+        url: "../load_notes_modal",
+        success: function ( html ) { 
+            $("#selected_note").modal('show');
+        },
+        error: function() {
+            alert('ajax did not succeed');
+        }
+    });
+}
+
+function clickListener() {
+    $('.openModal').unbind();
+    $('.openModal').click(function (e) {
+        e.preventDefault();
+        notes_modal();
+    });
+}
+    </script>
 
 
 <script>
