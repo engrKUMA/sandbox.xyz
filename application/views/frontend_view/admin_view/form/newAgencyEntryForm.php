@@ -1,119 +1,92 @@
-<section class="row">
-    <div class="col l2 m3 s4">
-        <!-- start: dashboard Side nav -->
-        <ul class="collection sticky">
-            <li class="collection-item center">
-                <img src=<?= $userPicture; ?> class="circle center" width="80px" height="80px">
-                     <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?= form_open('adminCOntroller/newAgencySubmit'); ?>
 
-                <a id="offer-property-btn" onclick="toRegisterAgency();" class="center collection-item waves-effect waves-light">Register Agency</a>
-                <a id="offer-property-btn" onclick="toLogout();" class="center collection-item waves-effect waves-light">Logout</a>
-        </ul>
-        <!-- end:  dashboard Side nav -->
-    </div>
-    <div class="col l8 m6 s8">
-        <div class="row card">
-            <div class="card-content">
-                <h3 class="dashboard-header" >Admin Dashboard</h3>
-                <p>Make changes to site</p>
+        <div>Agency Name: 
+            <?php
+            $data = array(
+                'name' => 'agencyName',
+                'id' => 'agencyName',
+                'value' => '',
+                'maxlength' => '100',
+                'size' => '50',
+                'style' => 'width:50%'
+            );
 
-                <button onclick="showUserRequest();">
-                    showUserRequest
-                </button>
-                <div></div>
-                <button onclick="postProperty();">
-                    Post Property
-                </button>
-            </div>
+            echo form_input($data);
+            ?>
         </div>
-</section>
 
+        <div>Agency Website: 
+            <?php
+            $data = array(
+                'name' => 'agencyWebsite',
+                'id' => 'agencyWebsite',
+                'value' => '',
+                'maxlength' => '100',
+                'size' => '50',
+                'style' => 'width:50%'
+            );
 
-<script>
-    // Initiate Facebook JS SDK
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
-            cookie: true, // enable cookies to allow the server to access the session
-            xfbml: false, // disable xfbml improves the page load time
-            version: 'v2.10',
-            status: true // Check for user login status right away
-        });
+            echo form_input($data);
+            ?>
+        </div>
 
-        FB.getLoginStatus(function (response) {
-            console.log('getLoginStatus', response);
-            // loginCheck(response);
-        });
-    };
+        <div>Agency Address: 
+            <?php
+            $data = array(
+                'name' => 'agencyAddress',
+                'id' => 'agencyAddress',
+                'value' => '',
+                'maxlength' => '100',
+                'size' => '50',
+                'style' => 'width:50%'
+            );
 
-// call logout function on account controller
-    function toLogout() {
+            echo form_input($data);
+            ?>
+        </div>
 
-        FB.logout(function (response) {
-            // Person is now logged out
-            window.location.href = "account/logout";
-        });
-    }
+        <div>Agency Number: 
+            <?php
+            $data = array(
+                'name' => 'agencyNumber',
+                'id' => 'agencyNumber',
+                'value' => '',
+                'maxlength' => '100',
+                'size' => '50',
+                'style' => 'width:50%'
+            );
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+            echo form_input($data);
+            ?>
+        </div>
+        <!--submit btn-->
+        <?php echo form_submit('mysubmit', 'Submit Agency Data'); ?>
+        <!--reset BTN-->
+        <?php
+        $data = array(
+            'name' => 'button',
+            'id' => 'button',
+            'value' => 'true',
+            'type' => 'reset',
+            'content' => 'Reset'
+        );
 
-<script type="text/javascript">
-    function updateUser() {
+        echo form_button($data);
+        ?>
 
-        $('form.updateUserForm').one('submit', function () {
+<?php echo form_close(); ?>
 
-            var that = $(this),
-                    url = that.attr('action'),
-                    type = that.attr('method'),
-                    data = {};
-
-            that.find('[name]').each(function (index, value) {
-                var that = $(this),
-                        name = that.attr('name'),
-                        value = that.val();
-
-                data[name] = value;
-            });
-
-            console.log(data);
-
-            $.ajax({
-                url: url,
-                type: type,
-                data: data,
-                success: function (response) {
-                    console.log(response);
-                }
-            });
-
-            return false;
-        });
-    }
-</script>
-
-<script type="text/javascript" >
-    function showUserRequest() {
-        //load controller
-        window.location.href = "/adminController/showUserRequest";
-    }
-    function showUserRequest() {
-
-        //load controller
-        window.location.href = "/adminController/showUserRequest";
-    }
-    function toRegisterAgency() {
-
-        //load controller
-        window.location.href = "/adminController/newAgencyForm";
-    }
-</script>
+    </body>
+</html>

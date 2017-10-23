@@ -33,5 +33,10 @@ class admin_model extends CI_Model {
         $this->db->where("userFBID", $userFBID);
         $this->db->update("userTable", $data);
     }
+    
+    public function insertAgency($data){
+        $this->db->insert('agencyTable', $data);
+        return $this->db->insert_id();
+    }
     //put your code here
 }

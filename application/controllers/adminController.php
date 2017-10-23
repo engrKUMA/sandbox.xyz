@@ -32,7 +32,7 @@ class adminController extends CI_Controller {
         //return the data in view
         $this->load->view('frontend_view/admin_view/adminShowUsers', $data);
     }
-    
+
     public function showUserRequest() {
         $data['h'] = $this->admin_model->getUserWihRequest();
         //return the data in view
@@ -53,28 +53,25 @@ class adminController extends CI_Controller {
 
         return $this->output->set_output("change saved");
     }
-    
-    public function newAgencyForm(){
-        
+
+    public function newAgencyForm() {
         $this->load->view('frontend_view/admin_view/form/newAgencyEntryForm');
     }
     
-     public function form_show() {
-        $this->load->view("frontend_view/admin_view/form/newAgencyEntryForm");
-    }
-    public function data_submitted() {
-        $checkbox_array = $this->input->post('qualification');
-        $data = array(
-            'employee_name' => $this->input->post('emp_name'),
-            'employee_email' => $this->input->post('emp_email'),
-            'employee_password' => $this->input->post('password'),
-            'employee_gender' => $this->input->post('select'),
-            'employee_marital_status'=> $this->input->post('emp_marital_status'),
-            'employee_qualification' => serialize($checkbox_array),
-            'employee_address' => $this->input->post('address'),
-            'employee_upload_file' => $this->input->post('file_upload')
-        );
-        $this->load->view('frontend_view/admin_view/form/newAgencyEntryForm', $data);
+    public function newAgencySubmit(){
+        $agencyName = $this->input->post('agencyName');
+        $agencyWebsite = $this->input->post('agencyWebsite');
+        $agencyAddress = $this->input->post('agencyAddress');
+        $agencyNumber = $this->input->post('agencyNumber');
+        
+        $result = $this->admin_model->insertAgency([
+           'agencyName' => $agencyName, 
+           'agencyWebsite' => $agencyWebsite, 
+           'agencyAddress' => $agencyAddress, 
+           'agencyNumber' => $agencyNumber 
+        ]);
+        
+        return $this->output->set_output("Agency Saved" . $result);
     }
 
 }
