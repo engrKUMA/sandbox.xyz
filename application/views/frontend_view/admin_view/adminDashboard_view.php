@@ -27,6 +27,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
   <script>
   $( function() {
     $( "#newAgency-dialog" ).dialog({
@@ -41,11 +42,29 @@
       }
     });
  
-    $( "#opener" ).on( "click", function() {
+    $( "#newAgencyForm-opener" ).on( "click", function() {
       $( "#newAgency-dialog" ).dialog( "open" );
     });
   } );
   </script>
+
+    <script>
+        $.ajax({
+            type: "POST",
+            url: "Monitor/showmachinelist",
+            data: {'val' : imagename},
+            dataType: "text"
+            }).done(function(data) {
+                console.log("test2");
+           }).fail(function() {
+            alert( "error" );
+            });
+  </script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -61,13 +80,14 @@
                 <img src=<?= $userPicture; ?> class="circle center" width="80px" height="80px">
                      <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
 
-                <a id="offer-property-btn" onclick="toRegisterAgency();" class="center collection-item waves-effect waves-light">Register Agency</a>
+                <a id="newAgencyForm-opener" class="center collection-item waves-effect waves-light">Register Agency</a>
+                <div id="newAgency-dialog" title="Basic dialog">
+                    <?php $this->view('frontend_view/admin_view/form/newAgencyEntryForm'); ?>
+                </div>
 
-<button id="opener">Open Dialog</button>
+                <!-- Trigger the modal with a button -->
+  <a class="center collection-item waves-effect waves-light" data-toggle="modal" data-target="#newAgencyFormModal">Open new agency Modal</a>
 
-  <div id="newAgency-dialog" title="Basic dialog">
-    <?php $this->view('frontend_view/admin_view/form/newAgencyEntryForm'); ?>
-  </div>
 
                 <a id="offer-property-btn" onclick="toLogout();" class="center collection-item waves-effect waves-light">Logout</a>
         </ul>
@@ -80,8 +100,14 @@
                 <p>Make changes to site</p>
 
                 <button onclick="showUserRequest();">
-                    showUserRequest();
+                    OLD showUserRequest();
                 </button>
+                <br />
+
+                <button>
+                    show user with chage request table
+                </button>
+
                 <br />
                 <button onclick="postProperty();">
                     Post Property
@@ -89,6 +115,27 @@
             </div>
         </div>
 </section>
+
+
+
+ <!-- start new agency Modal -->
+  <div class="modal fade" id="newAgencyFormModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Agency Form</h4>
+        </div>
+        <div class="modal-body">
+          <?php $this->view('frontend_view/admin_view/form/newAgencyEntryForm'); ?>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- end new agency modal -->
 
 <script>
     // Initiate Facebook JS SDK
