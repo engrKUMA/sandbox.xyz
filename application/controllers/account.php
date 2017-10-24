@@ -49,9 +49,9 @@ class Account extends CI_Controller {
             'userPicture' => $data['userPicture']
         );
 
-        $this->load->view('frontend_view/includes/header');
+        // $this->load->view('frontend_view/includes/header');
         $this->load->view('frontend_view/admin_view/adminDashboard_view', $thedata);
-        $this->load->view('frontend_view/includes/footer');
+        // $this->load->view('frontend_view/includes/footer');
     }
 
     public function userClient() {

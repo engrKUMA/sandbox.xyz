@@ -23,6 +23,10 @@
         <link href="<?= base_url('libs/slick/slick.css') ?>" rel="stylesheet">
         <link href="<?= base_url('libs/slick/slick-theme.css') ?>" rel="stylesheet">
 
+<!-- jquery ui -->
+        <link href="<?= base_url('libs/jquery-ui.css') ?>" rel="stylesheet">
+        <script src="<?= base_url('libs/jquery-ui.js') ?>"></script>
+
 
         <script type="text/javascript">
             var testdata = 'test';

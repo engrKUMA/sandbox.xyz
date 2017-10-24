@@ -14,4 +14,8 @@ class Home extends CI_Controller {
         $this->load->view('frontend_view/includes/footer');
     }
 
+    public function test(){
+    	$this->load->view('JQDialogTest');
+    }
+
 }
