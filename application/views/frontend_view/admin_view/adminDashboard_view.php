@@ -23,48 +23,33 @@
         <link href="<?= base_url('libs/slick/slick.css') ?>" rel="stylesheet">
         <link href="<?= base_url('libs/slick/slick-theme.css') ?>" rel="stylesheet">
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-  <script>
-  $( function() {
-    $( "#newAgency-dialog" ).dialog({
-      autoOpen: false,
-      show: {
-        effect: "blind",
-        duration: 1000
-      },
-      hide: {
-        effect: "explode",
-        duration: 1000
-      }
-    });
- 
-    $( "#newAgencyForm-opener" ).on( "click", function() {
-      $( "#newAgency-dialog" ).dialog( "open" );
-    });
-  } );
-  </script>
+        <script>
+            $(function () {
+                $("#newAgency-dialog").dialog({
+                    autoOpen: false,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    }
+                });
 
-    <script>
-        $.ajax({
-            type: "POST",
-            url: "Monitor/showmachinelist",
-            data: {'val' : imagename},
-            dataType: "text"
-            }).done(function(data) {
-                console.log("test2");
-           }).fail(function() {
-            alert( "error" );
+                $("#newAgencyForm-opener").on("click", function () {
+                    $("#newAgency-dialog").dialog("open");
+                });
             });
-  </script>
+        </script>
 
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </head>
     <body>
@@ -72,309 +57,322 @@
         <?php $this->load->view('frontend_view/includes/navbar'); ?>
         <!-- navbar -->
 
-<section class="row">
-    <div class="col l2 m3 s4">
-        <!-- start: dashboard Side nav -->
-        <ul class="collection sticky">
-            <li class="collection-item center">
-                <img src=<?= $userPicture; ?> class="circle center" width="80px" height="80px">
-                     <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
+        <section class="row">
+            <div class="col l2 m3 s4">
+                <!-- start: dashboard Side nav -->
+                <ul class="collection sticky">
+                    <li class="collection-item center">
+                        <img src=<?= $userPicture; ?> class="circle center" width="80px" height="80px">
+                             <p><?= $userFirstName; ?> <?= $userLastName; ?><br> <?= $userType; ?></p>
 
-                <a id="newAgencyForm-opener" class="center collection-item waves-effect waves-light">Register Agency</a>
-                <div id="newAgency-dialog" title="Basic dialog">
-                    <?php $this->view('frontend_view/admin_view/form/newAgencyEntryForm'); ?>
+                        <a id="newAgencyForm-opener" class="center collection-item waves-effect waves-light">open JQ Dialog Register Agency</a>
+                        <div id="newAgency-dialog" title="Basic dialog">
+                            <?php $this->view('frontend_view/admin_view/form/newAgencyEntryForm'); ?>
+                        </div>
+
+                        <!-- Trigger the modal with a button -->
+                        <a class="center collection-item waves-effect waves-light" data-toggle="modal" data-target="#newAgencyFormModal">Open new agency Modal</a>
+                        <!-- Trigger the modal with a button -->
+                        <a class="center collection-item waves-effect waves-light" data-toggle="modal" data-target="#newPropertyFormModal">Open new property Modal</a>
+
+                        <a id="offer-property-btn" onclick="toLogout();" class="center collection-item waves-effect waves-light">Logout</a>
+                </ul>
+                <!-- end:  dashboard Side nav -->
+            </div>
+            <div class="col l8 m6 s8">
+                <div class="row card">
+                    <div class="card-content">
+                        <h3 class="dashboard-header" >Admin Dashboard</h3>
+                        <p>Make changes to site</p>
+
+                        <button onclick="showUserRequest();">
+                            OLD showUserRequest();
+                        </button>
+                        <br />
+                        <button onclick="postProperty();">
+                            Post Property
+                        </button>
+                    </div>
+                </div>
+        </section>
+
+
+
+        <!-- start new agency Modal -->
+        <div class="modal fade" id="newAgencyFormModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New Agency Form</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php $this->view('frontend_view/admin_view/form/newAgencyEntryForm'); ?>
+                    </div>
                 </div>
 
-                <!-- Trigger the modal with a button -->
-  <a class="center collection-item waves-effect waves-light" data-toggle="modal" data-target="#newAgencyFormModal">Open new agency Modal</a>
-
-
-                <a id="offer-property-btn" onclick="toLogout();" class="center collection-item waves-effect waves-light">Logout</a>
-        </ul>
-        <!-- end:  dashboard Side nav -->
-    </div>
-    <div class="col l8 m6 s8">
-        <div class="row card">
-            <div class="card-content">
-                <h3 class="dashboard-header" >Admin Dashboard</h3>
-                <p>Make changes to site</p>
-
-                <button onclick="showUserRequest();">
-                    OLD showUserRequest();
-                </button>
-                <br />
-
-                <button>
-                    show user with chage request table
-                </button>
-
-                <br />
-                <button onclick="postProperty();">
-                    Post Property
-                </button>
             </div>
         </div>
-</section>
+        <!-- end new agency modal -->
+        <!-- start new property Modal -->
+        <div class="modal fade" id="newPropertyFormModal" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">New Agency Form</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php $this->view('frontend_view/admin_view/form/newPropertyEntryForm'); ?>
+                    </div>
+                </div>
 
-
- <!-- start new agency Modal -->
-  <div class="modal fade" id="newAgencyFormModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">New Agency Form</h4>
+            </div>
         </div>
-        <div class="modal-body">
-          <?php $this->view('frontend_view/admin_view/form/newAgencyEntryForm'); ?>
+        <!-- end new Property modal -->
+
+
+        <script>
+            // Initiate Facebook JS SDK
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
+                    cookie: true, // enable cookies to allow the server to access the session
+                    xfbml: false, // disable xfbml improves the page load time
+                    version: 'v2.10',
+                    status: true // Check for user login status right away
+                });
+
+                FB.getLoginStatus(function (response) {
+                    console.log('getLoginStatus', response);
+                    // loginCheck(response);
+                });
+            };
+
+            // call logout function on account controller
+            function toLogout() {
+
+                FB.logout(function (response) {
+                    // Person is now logged out
+                    window.location.href = "account/logout";
+                });
+            }
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+        <!--redirects--> 
+        <script type="text/javascript" >
+            function showUserRequest() {
+                //load controller
+                window.location.href = "/adminController/showUserRequest";
+            }
+            function postProperty() {
+
+                //load controller
+                window.location.href = "/adminController/newPropertyForm";
+            }
+            function toRegisterAgency() {
+                //load controller
+                window.location.href = "/adminController/newAgencyForm";
+            }
+        </script>
+        <!--
+          ////////////////////////////////////////////////////////////////////////////////////////
+          // start: page footer
+          //////////////////////////////////////////////////////////////////////////////////////// 
+        -->
+        <div class="row">
+            <a class="scrolltop" href="#"><i class="fa fa-angle-up"></i></a> 
         </div>
-      </div>
-      
-    </div>
-  </div>
-  <!-- end new agency modal -->
 
-<script>
-    // Initiate Facebook JS SDK
-    window.fbAsyncInit = function () {
-        FB.init({
-            appId: '<?php echo $this->config->item('facebook_app_id'); ?>', // Your app id
-            cookie: true, // enable cookies to allow the server to access the session
-            xfbml: false, // disable xfbml improves the page load time
-            version: 'v2.10',
-            status: true // Check for user login status right away
-        });
+        <footer class="page-footer" id="footer">
+            <div class="footer-copyright">
+                <div class="container">
+                    &copy; <?php echo date("Y"); ?> House And Promos Professional Realty
+                    <a class="grey-text text-lighten-4 right" href="#!">Powered by: CWSSTSI</a>
+                </div>
+            </div>
+        </footer>
+        <!-- 
+          ////////////////////////////////////////////////////////////////////////////////////////
+          // end: page footer
+          //////////////////////////////////////////////////////////////////////////////////////// 
+        -->
 
-        FB.getLoginStatus(function (response) {
-            console.log('getLoginStatus', response);
-            // loginCheck(response);
-        });
-    };
+        <!-- 
+          ////////////////////////////////////////////////////////////////////////////////////////
+          // start: Libraries
+          //////////////////////////////////////////////////////////////////////////////////////// 
+        -->
+        <!-- JQuery lib -->
+        <!-- <script src="<?= base_url('libs/jquery/jquery.min.js') ?>"></script> -->
 
-    // call logout function on account controller
-    function toLogout() {
+        <!-- Materialize Js -->
+        <script src="<?= base_url('libs/materialize/js/materialize.min.js') ?>"></script>
 
-        FB.logout(function (response) {
-            // Person is now logged out
-            window.location.href = "account/logout";
-        });
-    }
+        <!-- Light box js -->
+        <script src="<?= base_url('libs/lightbox/dist/js/lightbox.js') ?>"></script>
 
-    (function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
+        <!-- materialize custom Js -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.carousel').carousel({
+                    indicators: true
+                });
+                // Next slide
+                $('.carousel').carousel('next');
+                $('.carousel').carousel('next', 3); // Move next n times.
 
-<!--redirects--> 
-<script type="text/javascript" >
-    function showUserRequest() {
-        //load controller
-        window.location.href = "/adminController/showUserRequest";
-    }
-    function showUserRequest() {
+                // Previous slide
+                $('.carousel').carousel('prev');
+                $('.carousel').carousel('prev', 4); // Move prev n times.
 
-        //load controller
-        window.location.href = "/adminController/showUserRequest";
-    }
-    function toRegisterAgency() {
-        //load controller
-        window.location.href = "/adminController/newAgencyForm";
-    }
-</script>
+                // Set to nth slide
+                $('.carousel').carousel('set', 1);
 
-<!--
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // start: page footer
-  //////////////////////////////////////////////////////////////////////////////////////// 
--->
-<div class="row">
-    <a class="scrolltop" href="#"><i class="fa fa-angle-up"></i></a> 
-</div>
+                // Destroy carousel
+                // $('.carousel').carousel('remove');
 
-<footer class="page-footer" id="footer">
-    <div class="footer-copyright">
-        <div class="container">
-            &copy; <?php echo date("Y"); ?> House And Promos Professional Realty
-            <a class="grey-text text-lighten-4 right" href="#!">Powered by: CWSSTSI</a>
-        </div>
-    </div>
-</footer>
-<!-- 
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // end: page footer
-  //////////////////////////////////////////////////////////////////////////////////////// 
--->
+                $(".dropdown-button").dropdown({
+                    belowOrigin: true
+                });
+                $('ul.tabs').tabs({
+                    swipeable: false, // tabs to be swippable
+                });
+                $('ul.tabs').tabs('select_tab', 'tab_id');
+                $('.modal').modal();
+                $('select').material_select();
+                $('.button-collapse').sideNav({
+                    menuWidth: 300, // Default is 300
+                    draggable: true, // Choose whether you can drag to open on touch screens,
+                });
+            });
+        </script>
 
-<!-- 
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // start: Libraries
-  //////////////////////////////////////////////////////////////////////////////////////// 
--->
-<!-- JQuery lib -->
-<!-- <script src="<?= base_url('libs/jquery/jquery.min.js') ?>"></script> -->
-
-<!-- Materialize Js -->
-<script src="<?= base_url('libs/materialize/js/materialize.min.js') ?>"></script>
-
-<!-- Light box js -->
-<script src="<?= base_url('libs/lightbox/dist/js/lightbox.js') ?>"></script>
-
-<!-- materialize custom Js -->
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.carousel').carousel({
-            indicators: true
-        });
-        // Next slide
-        $('.carousel').carousel('next');
-        $('.carousel').carousel('next', 3); // Move next n times.
-
-        // Previous slide
-        $('.carousel').carousel('prev');
-        $('.carousel').carousel('prev', 4); // Move prev n times.
-
-        // Set to nth slide
-        $('.carousel').carousel('set', 1);
-
-        // Destroy carousel
-        // $('.carousel').carousel('remove');
-
-        $(".dropdown-button").dropdown({
-            belowOrigin: true
-        });
-        $('ul.tabs').tabs({
-            swipeable: false, // tabs to be swippable
-        });
-        $('ul.tabs').tabs('select_tab', 'tab_id');
-        $('.modal').modal();
-        $('select').material_select();
-        $('.button-collapse').sideNav({
-            menuWidth: 300, // Default is 300
-            draggable: true, // Choose whether you can drag to open on touch screens,
-        });
-    });
-</script>
-
-<!-- Lightbox custom Js -->
-<script>
-    lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true
-    })
-</script>
-<!-- 
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // end: Libraries
-  //////////////////////////////////////////////////////////////////////////////////////// 
--->
+        <!-- Lightbox custom Js -->
+        <script>
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true
+            })
+        </script>
+        <!-- 
+          ////////////////////////////////////////////////////////////////////////////////////////
+          // end: Libraries
+          //////////////////////////////////////////////////////////////////////////////////////// 
+        -->
 
 
-<!-- 
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // start: Custom made JS
-  //////////////////////////////////////////////////////////////////////////////////////// 
--->
+        <!-- 
+          ////////////////////////////////////////////////////////////////////////////////////////
+          // start: Custom made JS
+          //////////////////////////////////////////////////////////////////////////////////////// 
+        -->
 
-<script type="text/javascript">
-    $("#agentForm").hide();
-    $("#keyInfoBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
+        <script type="text/javascript">
+            $("#agentForm").hide();
+            $("#keyInfoBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // start: offer page jquery
-    ////////////////////////////////////////////////////////////////////////////////////////
-    function activeInfo() {
-        $("#keyInfoBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
-        $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-    }
-    function activeLocation() {
-        $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#locationBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
-        $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-    }
-    function activePhotos() {
-        $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#photosBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
-        $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-    }
-    function activeDetails() {
-        $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#detailsBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
-        $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-    }
-    function activeContact() {
-        $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
-        $("#contactBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // end: offer page jquery
-    ////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////
+            // start: offer page jquery
+            ////////////////////////////////////////////////////////////////////////////////////////
+            function activeInfo() {
+                $("#keyInfoBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
+                $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+            }
+            function activeLocation() {
+                $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#locationBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
+                $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+            }
+            function activePhotos() {
+                $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#photosBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
+                $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+            }
+            function activeDetails() {
+                $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#detailsBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
+                $("#contactBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+            }
+            function activeContact() {
+                $("#keyInfoBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#locationBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#photosBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#detailsBtn").css({"background-color": "#fff", "color": "#5c6bc0"});
+                $("#contactBtn").css({"background-color": "#5c6bc0", "color": "#fff"});
+            }
+            ////////////////////////////////////////////////////////////////////////////////////////
+            // end: offer page jquery
+            ////////////////////////////////////////////////////////////////////////////////////////
 
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // start: nav bar JQuery  
-    ////////////////////////////////////////////////////////////////////////////////////////
-    function chevBuy() {
-        document.getElementById("chevBuy").className = "fa fa-chevron-up";
-        document.getElementById("chevBuySide").className = "fa fa-chevron-up";
-        document.getElementById("chevPreSell").className = "fa fa-chevron-down";
-        document.getElementById("chevPreSellSide").className = "fa fa-chevron-down";
-        document.getElementById("chevRent").className = "fa fa-chevron-down";
-        document.getElementById("chevRentSide").className = "fa fa-chevron-down";
-    }
-    function chevPreSell() {
-        document.getElementById("chevBuy").className = "fa fa-chevron-down";
-        document.getElementById("chevBuySide").className = "fa fa-chevron-down";
-        document.getElementById("chevPreSell").className = "fa fa-chevron-up";
-        document.getElementById("chevPreSellSide").className = "fa fa-chevron-up";
-        document.getElementById("chevRent").className = "fa fa-chevron-down";
-        document.getElementById("chevRentSide").className = "fa fa-chevron-down";
-    }
-    function chevRent() {
-        document.getElementById("chevBuy").className = "fa fa-chevron-down";
-        document.getElementById("chevBuySide").className = "fa fa-chevron-down";
-        document.getElementById("chevPreSell").className = "fa fa-chevron-down";
-        document.getElementById("chevPreSellSide").className = "fa fa-chevron-down";
-        document.getElementById("chevRent").className = "fa fa-chevron-up";
-        document.getElementById("chevRentSide").className = "fa fa-chevron-up";
-    }
-    function chevAccount() {
-        document.getElementById("chevBuy").className = "fa fa-chevron-down";
-        document.getElementById("chevBuySide").className = "fa fa-chevron-down";
-        document.getElementById("chevPreSell").className = "fa fa-chevron-down";
-        document.getElementById("chevPreSellSide").className = "fa fa-chevron-down";
-        document.getElementById("chevRent").className = "fa fa-chevron-down";
-        document.getElementById("chevRentSide").className = "fa fa-chevron-down";
-    }
-    ////////////////////////////////////////////////////////////////////////////////////////
-    // end: nav bar JQuery  
-    ////////////////////////////////////////////////////////////////////////////////////////
+            ////////////////////////////////////////////////////////////////////////////////////////
+            // start: nav bar JQuery  
+            ////////////////////////////////////////////////////////////////////////////////////////
+            function chevBuy() {
+                document.getElementById("chevBuy").className = "fa fa-chevron-up";
+                document.getElementById("chevBuySide").className = "fa fa-chevron-up";
+                document.getElementById("chevPreSell").className = "fa fa-chevron-down";
+                document.getElementById("chevPreSellSide").className = "fa fa-chevron-down";
+                document.getElementById("chevRent").className = "fa fa-chevron-down";
+                document.getElementById("chevRentSide").className = "fa fa-chevron-down";
+            }
+            function chevPreSell() {
+                document.getElementById("chevBuy").className = "fa fa-chevron-down";
+                document.getElementById("chevBuySide").className = "fa fa-chevron-down";
+                document.getElementById("chevPreSell").className = "fa fa-chevron-up";
+                document.getElementById("chevPreSellSide").className = "fa fa-chevron-up";
+                document.getElementById("chevRent").className = "fa fa-chevron-down";
+                document.getElementById("chevRentSide").className = "fa fa-chevron-down";
+            }
+            function chevRent() {
+                document.getElementById("chevBuy").className = "fa fa-chevron-down";
+                document.getElementById("chevBuySide").className = "fa fa-chevron-down";
+                document.getElementById("chevPreSell").className = "fa fa-chevron-down";
+                document.getElementById("chevPreSellSide").className = "fa fa-chevron-down";
+                document.getElementById("chevRent").className = "fa fa-chevron-up";
+                document.getElementById("chevRentSide").className = "fa fa-chevron-up";
+            }
+            function chevAccount() {
+                document.getElementById("chevBuy").className = "fa fa-chevron-down";
+                document.getElementById("chevBuySide").className = "fa fa-chevron-down";
+                document.getElementById("chevPreSell").className = "fa fa-chevron-down";
+                document.getElementById("chevPreSellSide").className = "fa fa-chevron-down";
+                document.getElementById("chevRent").className = "fa fa-chevron-down";
+                document.getElementById("chevRentSide").className = "fa fa-chevron-down";
+            }
+            ////////////////////////////////////////////////////////////////////////////////////////
+            // end: nav bar JQuery  
+            ////////////////////////////////////////////////////////////////////////////////////////
 
-</script>
+        </script>
 
-<!-- 
-  ////////////////////////////////////////////////////////////////////////////////////////
-  // end: Custom made JS
-  //////////////////////////////////////////////////////////////////////////////////////// 
--->
+        <!-- 
+          ////////////////////////////////////////////////////////////////////////////////////////
+          // end: Custom made JS
+          //////////////////////////////////////////////////////////////////////////////////////// 
+        -->

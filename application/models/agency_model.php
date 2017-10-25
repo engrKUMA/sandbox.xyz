@@ -12,4 +12,9 @@ class Agency_model extends CI_Model {
         $this->db->insert('agencyTable', $data);
     }
 
+    public function getAllAgency() {
+        $query = $this->db->get('agencyTable');
+        return $query->result();
+    }
+
 }
